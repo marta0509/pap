@@ -16,3 +16,13 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('index');
 });
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+Route::get('/contactos','App\Http\Controllers\ContactosController@index')->name('contactos');
+
+Route::get('/horario','App\Http\Controllers\HorarioController@index')->name('horario');
+
+Route::get('/somos','App\Http\Controllers\SomosController@index')->name('somos');

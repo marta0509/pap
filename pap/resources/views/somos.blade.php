@@ -1,11 +1,11 @@
 @extends('layout')
 @section('titulo-pagina')
-Bem-vindo
+Informação
 @endsection
 @section('header')
-titulo
+Quem Somos
 @endsection
 @section('conteudo')
-Informações da loja,  imagens...
+ 
 
 @endsection

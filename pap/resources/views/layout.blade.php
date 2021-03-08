@@ -3,23 +3,47 @@
 <head>
 	<meta charset="utf-8">
 	<title>@yield('titulo-pagina')</title> 
-	
-	
+	<link rel="stylesheet" type="text/css" href="{{asset('css/estilos.css')}}">
+	<link rel="stylesheet" type="text/js" href="{{asset('js/estilos.js')}}">
+	<link rel="stylesheet" type="text/css" href="grid/simple-grid.min.css">
 </head>
 <body>
 
-<!--Cabeçalho-->
+<!--Cabeçalho-->	
 	
+<div class="navbar">
+	<table class="table">
+		<tr>
+			<td>
+				<a href="/"><img class="logo" src="logo.png"></a>
+			</td>
+			<!--adicionar depois as outras ligações(mais td)-->
+			<td >
+				<a id="link" href="{{route('login')}}">Iniciar Sessão</a>
+			</td>
+		</tr>
+	</table>
+</div>
+
+<!--conteudo-->
+<h1>@yield('header')</h1>
 	
-	<div style="background-color: black">
-		<h3>index</h3>
-	</div>
-<h1 style="text-align: center">@yield('header')</h1>
 	@yield('conteudo')
+
+
 
 <!--Rodapé-->
 <br>
-
-	<footer style="position: relative;background-color:black;color: #FFF;width:100%;text-align: center;line-height: 40px;bottom: 0px;margin-top: 24%">Copyright: Marta Machado</footer>
+	<footer class="rodape">
+		<div style="text-align: left">
+			<ul>
+				<a href="somos"> Quem somos </a> <br>
+				<a href="horario"> Horario(tambem o mapa) </a> <br>
+				<a href="contactos"> Contactos </a> <br>
+			</ul>
+		</div>
+	</footer>
 	
 </body>
+</html>
+

@@ -1,0 +1,77 @@
+/*login*/
+
+body
+{
+	padding-top:50px;
+    background-color: white;
+    margin: 0px;
+}
+
+.login 
+{
+    background: white; /* For browsers that do not support gradients */
+    background: -webkit-linear-gradient(bottom,rgba(50,50,50,0),rgba(50,50,50,1)); /*Safari 5.1-6*/
+    background: -o-linear-gradient(top,rgba(50,50,50,0),rgba(50,50,50,1)); /*Opera 11.1-12*/
+    background: -moz-linear-gradient(top,rgba(50,50,50,0),rgba(50,50,50,1)); /*Fx 3.6-15*/
+    background: linear-gradient(to top, rgba(50,50,50,0), rgba(50,50,50,1)); /*Standard*/
+
+    /*box-shadow: 0 8px 15px 0 rgba(0, 0, 10, 0.2), 0 6px 20px 0 rgba(0, 0, 10, 0.19);*/
+    box-shadow:-10px 10px 5px grey;
+    color: #b3ff1a;
+    font-size: 18px;
+}
+
+/*fim login*/
+
+.table
+{
+	border: 1px;
+}
+.logo
+{
+	height:100px;
+	width:100px;
+}
+
+.navbar
+{
+	padding-bottom: 0px;
+	background-color: black;
+	width: 100%;
+	position: fixed;
+	right: 0%;
+	top:0px;
+	left: 0%;
+}
+
+#link
+{
+	color: #F7D358;
+}
+
+.rodape
+{
+	position: fixed;
+	background-color:#F7D358;
+	width:100%;
+	text-align: left;
+	line-height: 40px;
+	bottom: 0px;
+	right: 0%;
+	left: 0%;
+}
+
+.endereco
+{
+	background-color: #f7f7f7;
+	padding-right: 20px;
+	padding-left:20px;
+}
+
+.contactos
+{
+	padding-top: 30px;
+	left: 0%;
+	right: 0%;
+	
+}
