@@ -3,7 +3,7 @@
 Horario
 @endsection
 @section('header')
-Viste-nos
+<br><p style="color: red">Viste-nos</p>
 @endsection
 @section('conteudo')
  
@@ -19,7 +19,7 @@ Viste-nos
 	<p>Domingo e feriados estamos fechados.</p>
 	<br>
 	<strong>Morada</strong>
-	<p>Rua Carvalhais,4780-415, Santo Tirso - Porto</p>
+	<p>Rua Carvalhais, 4780-415, Santo Tirso - Porto</p>
 	"Mapa Google"
 	<br>
 </div>

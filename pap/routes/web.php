@@ -21,8 +21,18 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
+/*****Contactos*****/
+
 Route::get('/contactos','App\Http\Controllers\ContactosController@index')->name('contactos');
+
+/*****Horario*****/
 
 Route::get('/horario','App\Http\Controllers\HorarioController@index')->name('horario');
 
+/*****Quem somos*****/
+
 Route::get('/somos','App\Http\Controllers\SomosController@index')->name('somos');
+
+/*****Clientes*****/
+
+Route::get('/clientes','App\Http\Controllers\ClientesController@index')->name('clientes');

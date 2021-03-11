@@ -17,7 +17,9 @@
 			<td>
 				<a href="/"><img class="logo" src="logo.png"></a>
 			</td>
-			<!--adicionar depois as outras ligações(mais td)-->
+			<td >
+				<a id="link" href="{{route('clientes')}}">Area Cliente</a>
+			</td>
 			<td >
 				<a id="link" href="{{route('login')}}">Iniciar Sessão</a>
 			</td>
@@ -33,12 +35,12 @@
 
 
 <!--Rodapé-->
-<br>
+
 	<footer class="rodape">
 		<div style="text-align: left">
 			<ul>
 				<a href="somos"> Quem somos </a> <br>
-				<a href="horario"> Horario(tambem o mapa) </a> <br>
+				<a href="horario"> Horario </a> <br>
 				<a href="contactos"> Contactos </a> <br>
 			</ul>
 		</div>
