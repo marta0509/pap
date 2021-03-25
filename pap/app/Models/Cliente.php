@@ -18,4 +18,9 @@ class Cliente extends Model
     	'telefone',
     	'email'
     ];
+
+    public function equipamento()
+    {
+    	return $this->hasMany('App\Models\Equipamento','id_cliente');
+    }
 }

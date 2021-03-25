@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 11-Mar-2021 às 18:55
+-- Tempo de geração: 15-Mar-2021 às 09:37
 -- Versão do servidor: 10.4.17-MariaDB
 -- versão do PHP: 7.4.13
 
@@ -43,8 +43,8 @@ CREATE TABLE `clientes` (
 CREATE TABLE `equipamentos` (
   `id_equipamento` int(11) NOT NULL,
   `id_cliente` int(11) NOT NULL,
-  `avaria` varchar(50) NOT NULL,
-  `marca` varchar(15) NOT NULL
+  `marca` varchar(15) NOT NULL,
+  `descricao` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -62,18 +62,6 @@ CREATE TABLE `failed_jobs` (
   `exception` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
   `failed_at` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
--- --------------------------------------------------------
-
---
--- Estrutura da tabela `fornece`
---
-
-CREATE TABLE `fornece` (
-  `id_fornecedor` int(11) NOT NULL,
-  `id_material` int(11) NOT NULL,
-  `fatura` varchar(50) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -110,9 +98,8 @@ CREATE TABLE `funcionarios` (
 
 CREATE TABLE `materiais` (
   `id_material` int(11) NOT NULL,
-  `marca` int(20) NOT NULL,
   `designacao` varchar(80) NOT NULL,
-  `preco` double NOT NULL
+  `id_fornecedor` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -155,10 +142,22 @@ CREATE TABLE `password_resets` (
 --
 
 CREATE TABLE `reparacao` (
-  `id_equipamento` int(11) NOT NULL,
-  `id_funcionario` int(11) NOT NULL,
+  `id_reparacao` int(11) NOT NULL,
   `id_material` int(11) NOT NULL,
+  `descricao` varchar(50) NOT NULL,
   `preco` double NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `reparacao_equipamento`
+--
+
+CREATE TABLE `reparacao_equipamento` (
+  `id_equipamento` int(11) NOT NULL,
+  `id_reparacao` int(11) NOT NULL,
+  `id_funcionario` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -211,12 +210,6 @@ ALTER TABLE `failed_jobs`
   ADD UNIQUE KEY `failed_jobs_uuid_unique` (`uuid`);
 
 --
--- Índices para tabela `fornece`
---
-ALTER TABLE `fornece`
-  ADD KEY `id_fornecedor` (`id_fornecedor`,`id_material`);
-
---
 -- Índices para tabela `fornecedores`
 --
 ALTER TABLE `fornecedores`
@@ -232,7 +225,8 @@ ALTER TABLE `funcionarios`
 -- Índices para tabela `materiais`
 --
 ALTER TABLE `materiais`
-  ADD PRIMARY KEY (`id_material`);
+  ADD PRIMARY KEY (`id_material`),
+  ADD KEY `id_fornecedor` (`id_fornecedor`);
 
 --
 -- Índices para tabela `migrations`
@@ -250,7 +244,16 @@ ALTER TABLE `password_resets`
 -- Índices para tabela `reparacao`
 --
 ALTER TABLE `reparacao`
-  ADD KEY `id_equipamento` (`id_equipamento`,`id_funcionario`,`id_material`);
+  ADD PRIMARY KEY (`id_reparacao`),
+  ADD KEY `id_equipamento` (`id_material`);
+
+--
+-- Índices para tabela `reparacao_equipamento`
+--
+ALTER TABLE `reparacao_equipamento`
+  ADD KEY `id_equipamento` (`id_equipamento`,`id_reparacao`,`id_funcionario`),
+  ADD KEY `id_reparacao` (`id_reparacao`),
+  ADD KEY `id_funcionario` (`id_funcionario`);
 
 --
 -- Índices para tabela `users`
@@ -310,6 +313,36 @@ ALTER TABLE `migrations`
 --
 ALTER TABLE `users`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- Restrições para despejos de tabelas
+--
+
+--
+-- Limitadores para a tabela `equipamentos`
+--
+ALTER TABLE `equipamentos`
+  ADD CONSTRAINT `equipamentos_ibfk_1` FOREIGN KEY (`id_cliente`) REFERENCES `clientes` (`id_cliente`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Limitadores para a tabela `materiais`
+--
+ALTER TABLE `materiais`
+  ADD CONSTRAINT `materiais_ibfk_1` FOREIGN KEY (`id_fornecedor`) REFERENCES `fornecedores` (`id_fornecedor`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Limitadores para a tabela `reparacao`
+--
+ALTER TABLE `reparacao`
+  ADD CONSTRAINT `reparacao_ibfk_1` FOREIGN KEY (`id_material`) REFERENCES `materiais` (`id_material`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Limitadores para a tabela `reparacao_equipamento`
+--
+ALTER TABLE `reparacao_equipamento`
+  ADD CONSTRAINT `reparacao_equipamento_ibfk_1` FOREIGN KEY (`id_equipamento`) REFERENCES `equipamentos` (`id_equipamento`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `reparacao_equipamento_ibfk_2` FOREIGN KEY (`id_reparacao`) REFERENCES `reparacao` (`id_reparacao`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `reparacao_equipamento_ibfk_3` FOREIGN KEY (`id_funcionario`) REFERENCES `funcionarios` (`id_funcionario`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

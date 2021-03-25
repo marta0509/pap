@@ -36,3 +36,13 @@ Route::get('/somos','App\Http\Controllers\SomosController@index')->name('somos')
 /*****Clientes*****/
 
 Route::get('/clientes','App\Http\Controllers\ClientesController@index')->name('clientes');
+
+/*****perfil dos funcionarios-----admin *****/
+
+Route::get('/perfil','App\Http\Controllers\PerfilController@index')->name('perfil')->middleware('auth');
+
+/*****Equipamentos*****/
+
+Route::get('/equipamentos','App\Http\Controllers\EquipamentosController@index')->name('equipamentos');
+
+Route::get('/equipamentos/{id}/show','App\Http\Controllers\EquipamentosController@show')->name('equipamentos.show');

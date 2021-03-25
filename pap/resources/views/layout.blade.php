@@ -21,6 +21,9 @@
 				<a id="link" href="{{route('clientes')}}">Area Cliente</a>
 			</td>
 			<td >
+				<a id="link" href="{{route('perfil')}}">Perfil funcionário</a>
+			</td>
+			<td >
 				<a id="link" href="{{route('login')}}">Iniciar Sessão</a>
 			</td>
 		</tr>
