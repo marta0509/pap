@@ -17,7 +17,7 @@ body
 
     /*box-shadow: 0 8px 15px 0 rgba(0, 0, 10, 0.2), 0 6px 20px 0 rgba(0, 0, 10, 0.19);*/
     box-shadow:-10px 10px 5px orange;
-    color: #b3ff1a;  /*cor do login*/
+    color: orange;  /*cor do login*/
     font-size: 18px;
 }
 

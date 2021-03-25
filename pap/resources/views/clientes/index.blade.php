@@ -12,13 +12,10 @@ Seja bem-vindo de volta!
 	@foreach($clientes as $cliente)
 		Nome:{{$cliente->nome}}<br>
 		Telefone:{{$cliente->telefone}}<br>
-		Email:{{$cliente->email}}<br>	
+		Email:{{$cliente->email}}<br>
+		{{$cliente->equipamentos->id_equipamento}}
 	@endforeach
 
-	@foreach($equipamentos as $equipamento)
-		Nome:{{$equipamento->marca}}<br>
-		Telefone:{{$equipamento->designacao}}<br>
-		nome do cliente:{{$equipamento->clientes-> nome}}
-	@endforeach
+	
 
 @endsection

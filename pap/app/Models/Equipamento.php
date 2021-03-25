@@ -15,7 +15,6 @@ class Equipamento extends Model
 
     protected $fillable=[
         'id_cliente',
-        'id_equipamento',
         'marca',
         'descricao'
     ];
