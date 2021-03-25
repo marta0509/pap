@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 15-Mar-2021 às 09:37
+-- Tempo de geração: 25-Mar-2021 às 21:57
 -- Versão do servidor: 10.4.17-MariaDB
 -- versão do PHP: 7.4.13
 
@@ -34,6 +34,13 @@ CREATE TABLE `clientes` (
   `email` varchar(30) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Extraindo dados da tabela `clientes`
+--
+
+INSERT INTO `clientes` (`id_cliente`, `nome`, `telefone`, `email`) VALUES
+(1, 'jose', 915415554, '');
+
 -- --------------------------------------------------------
 
 --
@@ -46,6 +53,13 @@ CREATE TABLE `equipamentos` (
   `marca` varchar(15) NOT NULL,
   `descricao` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Extraindo dados da tabela `equipamentos`
+--
+
+INSERT INTO `equipamentos` (`id_equipamento`, `id_cliente`, `marca`, `descricao`) VALUES
+(1, 1, 'Hp', 'Impressora');
 
 -- --------------------------------------------------------
 
@@ -87,7 +101,9 @@ CREATE TABLE `funcionarios` (
   `nome` int(80) NOT NULL,
   `telefone` int(9) NOT NULL,
   `email` varchar(50) NOT NULL,
-  `contrato` varchar(20) NOT NULL
+  `contrato` varchar(20) NOT NULL,
+  `salario` int(11) NOT NULL,
+  `horas` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -267,16 +283,10 @@ ALTER TABLE `users`
 --
 
 --
--- AUTO_INCREMENT de tabela `clientes`
---
-ALTER TABLE `clientes`
-  MODIFY `id_cliente` int(11) NOT NULL AUTO_INCREMENT;
-
---
 -- AUTO_INCREMENT de tabela `equipamentos`
 --
 ALTER TABLE `equipamentos`
-  MODIFY `id_equipamento` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_equipamento` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT de tabela `failed_jobs`
