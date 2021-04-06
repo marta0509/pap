@@ -51,7 +51,7 @@ body
 
 .rodape
 {
-	position: fixed;
+	position: absolute;
 	background-color:#F7D358;
 	width:100%;
 	text-align: left;

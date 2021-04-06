@@ -9,13 +9,25 @@ Seja bem-vindo de volta!
  
 	Veja como está seu equipamento.<br>
 
-	@foreach($clientes as $cliente)
-		Nome:{{$cliente->nome}}<br>
-		Telefone:{{$cliente->telefone}}<br>
-		Email:{{$cliente->email}}<br>
-		{{$cliente->equipamentos->id_equipamento}}
-	@endforeach
+<br>
 
+
+	@foreach($equipamentos as $equipamento)
+		Nome cliente:{{$equipamento->cliente->nome}}<br>
+		Telefone:{{$equipamento->cliente->telefone}}<br>
+ 		Equipamentos do cliente<br>
+		Marca:{{$equipamento->marca}}<br>
+		Descrição:{{$equipamento->descricao}}<br>
+		<hr>
+ 	@endforeach
+
+ @foreach($reparacao as $reparacao)
+		
+	Descrição:{{$reparacao->descricao}}<br>
+	Preço:{{$reparacao->preco}}<br>
 	
+ @endforeach
+
+
 
 @endsection

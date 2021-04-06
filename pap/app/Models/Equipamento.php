@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Equipamento extends Model
 {
-    use HasFactory;
+     use HasFactory;
 
     protected $primaryKey="id_equipamento";
 
@@ -21,6 +21,11 @@ class Equipamento extends Model
 
     public function cliente()
     {
-    	return $this->belongsTo('App\Models\Cliente','id_cliente');
+        return $this->belongsTo('App\Models\Cliente','id_cliente');
+    }
+
+    public function equipamento()
+    {
+       return $this->belongsToMany('App\Models\Reparacao','reparacao_equipamento','id_equipamento','id_reparacao')->withTimestamps();
     }
 }

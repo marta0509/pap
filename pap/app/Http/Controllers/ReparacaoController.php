@@ -4,24 +4,22 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Cliente;
-use App\Models\Equipamento;
 use App\Models\Reparacao;
 
-class ClientesController extends Controller
+class ReparacaoController extends Controller
 {
    
     public function index()
     {
-        $equipamentos=Equipamento::all();
-        $reparacoes=Reparacao::all();
+        $reparacao=Reparacao::all();
         $clientes=Cliente::all();
-       return view('clientes.index',['clientes'=>$clientes, 'equipamentos'=>$equipamentos, 'reparacao'=>$reparacoes]);
+       return view('clientes.index',['clientes'=>$clientes, 'reparacao'=>$reparacao]);
     }
 
     public function show(Request $request)
     {
         $idCliente=$request->id;
-        $clientes=Cliente::Where('id_cliente',$idCliente)->first();
+        $clientes=Cliente::Where('id_cliente',$idCliente)->with('equipamentos'->first();
         return view ('clientes.index',['clientes'=>$clientes]);
     } 
 }
