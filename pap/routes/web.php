@@ -45,4 +45,14 @@ Route::get('/perfil','App\Http\Controllers\PerfilController@index')->name('perfi
 
 Route::get('/equipamentos','App\Http\Controllers\EquipamentosController@index')->name('equipamentos');
 
-Route::get('/equipamentos/{id}/show','App\Http\Controllers\EquipamentosController@show')->name('equipamentos.show');
+Route::get('/equipamentos/create','App\Http\Controllers\EquipamentosController@create')->name('equipamentos.create');
+
+Route::post('/equipamentos','App\Http\Controllers\EquipamentosController@store')->name('equipamentos.store');
+
+Route::get('/equipamentos/{id}/edit','App\Http\Controllers\EquipamentosController@edit')->name('equipamentos.edit');
+
+Route::patch('/equipamentos','App\Http\Controllers\EquipamentosController@update')->name('equipamentos.update');
+
+Route::get('/equipamentos/{id}/delete','App\Http\Controllers\EquipamentosController@delete')->name('equipamentos.delete');
+
+Route::delete('/equipamentos','App\Http\Controllers\EquipamentosController@destroy')->name('equipamentos.destroy');

@@ -8,9 +8,16 @@ Seja bem-vindo de volta!
 @section('conteudo')
  
 	@foreach($equipamentos as $equipamento)
+		Id cliente:{{$equipamento->id_cliente}}<br>
 		Nome:{{$equipamento->marca}}<br>
-		Telefone:{{$equipamento->descricao}}<br>
-		id cliente:{{$equipamento->id_cliente}}
-	@endforeach
+		Telefone:{{$equipamento->descricao}}
 
+	<div style="text-align: right; margin-right: 150px">
+		<a href="{{route('equipamentos.edit',['id'=>$equipamento->id_equipamento])}}">Editar</a>&nbsp&nbsp&nbsp
+		<a href="{{route('equipamentos.delete',['id'=>$equipamento->id_equipamento])}}">Apagar</a>
+	</div>
+		<hr>
+	@endforeach
+<br>
+<a href="{{route('equipamentos.create')}}">Adicionar</a>
 @endsection

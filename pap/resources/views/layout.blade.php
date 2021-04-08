@@ -26,6 +26,9 @@
 			<td >
 				<a id="link" href="{{route('login')}}">Iniciar Sessão</a>
 			</td>
+			<td >
+				<a id="link" href="{{route('equipamentos')}}">Equipamentos</a>
+			</td>
 		</tr>
 	</table>
 </div>
