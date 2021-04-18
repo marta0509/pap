@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 06-Abr-2021 às 18:31
+-- Tempo de geração: 18-Abr-2021 às 23:58
 -- Versão do servidor: 10.4.17-MariaDB
 -- versão do PHP: 7.4.13
 
@@ -40,7 +40,8 @@ CREATE TABLE `clientes` (
 
 INSERT INTO `clientes` (`id_cliente`, `nome`, `telefone`, `email`) VALUES
 (1, 'jose', 915415554, ''),
-(2, 'joana', 914785559, 'maria@gmail.com');
+(2, 'joana', 914785559, 'maria@gmail.com'),
+(3, 'Marta', 915415554, 'a14177@aedah.pt');
 
 -- --------------------------------------------------------
 
@@ -63,7 +64,7 @@ INSERT INTO `equipamentos` (`id_equipamento`, `id_cliente`, `marca`, `descricao`
 (1, 1, 'Hp', 'Impressora'),
 (2, 1, 'Lenovo', 'Yoga'),
 (3, 1, 'MacBook', '10.2'),
-(4, 2, 'Asus', 'Power');
+(8, 3, 'Hp\'s', 'ola');
 
 -- --------------------------------------------------------
 
@@ -100,8 +101,8 @@ CREATE TABLE `fornecedores` (
 
 INSERT INTO `fornecedores` (`id_fornecedor`, `nome`, `telefone`, `email`) VALUES
 (1, 'Manuel Ferreira', 936587412, 'mferreira@gmail.pt'),
-(2, 'Vitor Alves', 914785598, 'Vitoralves@gmail.com'),
-(3, 'Antonio Pereira', 912369852, 'Apererira@gmail.com');
+(2, 'Vitor Alves', 914785598, 'vitoralves@gmail.com'),
+(3, 'Antonio Pereira', 912369852, 'apererira@gmail.com');
 
 -- --------------------------------------------------------
 
@@ -126,7 +127,7 @@ CREATE TABLE `funcionarios` (
 INSERT INTO `funcionarios` (`id_funcionario`, `nome`, `telefone`, `email`, `contrato`, `salario`, `horas`) VALUES
 (1, 'Inês', 932458784, 'ines@gmail.com', '', 0, 0),
 (2, 'Mariana Moreira', 914567889, 'marianamoreira88@gmail.com', '', 0, 0),
-(3, 'Tiago Freitas', 936855998, 'Tiagoo12@gmail.com', '', 0, 0);
+(3, 'Tiago Freitas', 936855998, 'tiagoo12@gmail.com', '', 0, 0);
 
 -- --------------------------------------------------------
 
@@ -192,17 +193,19 @@ CREATE TABLE `reparacao` (
   `id_reparacao` int(11) NOT NULL,
   `id_material` int(11) NOT NULL,
   `descricao` varchar(80) NOT NULL,
-  `preco` double NOT NULL
+  `preco` double NOT NULL,
+  `data` date DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Extraindo dados da tabela `reparacao`
 --
 
-INSERT INTO `reparacao` (`id_reparacao`, `id_material`, `descricao`, `preco`) VALUES
-(1, 111, 'Seu equipamento está pronto!', 50),
-(2, 1025, 'Seu equipamento ainda está a ser analisado. ', 0),
-(3, 225, 'Seu equipamento ainda não foi apresentado para o técnico. ', 0);
+INSERT INTO `reparacao` (`id_reparacao`, `id_material`, `descricao`, `preco`, `data`) VALUES
+(0, 225, 'Ainda não foi visto pelo tecnico', 0, '2021-04-04'),
+(1, 111, 'Seu equipamento está pronto!', 50, '2021-04-04'),
+(2, 1025, 'Seu equipamento ainda está a ser analisado. ', 0, '2020-11-09'),
+(3, 225, 'Seu equipamento ainda não foi apresentado para o técnico. ', 0, '2021-04-03');
 
 -- --------------------------------------------------------
 
@@ -223,8 +226,8 @@ CREATE TABLE `reparacao_equipamento` (
 
 INSERT INTO `reparacao_equipamento` (`id_re`, `id_equipamento`, `id_reparacao`, `id_funcionario`) VALUES
 (1, 1, 1, 1),
-(2, 3, 2, 2),
-(3, 4, 3, 3);
+(4, 2, 3, 1),
+(2, 3, 2, 2);
 
 -- --------------------------------------------------------
 
@@ -238,7 +241,7 @@ CREATE TABLE `users` (
   `email` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
   `email_verified_at` timestamp NULL DEFAULT NULL,
   `password` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `tipo_user` varchar(20) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'normal ou funcionario ou admin',
+  `tipo_user` varchar(20) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'normal' COMMENT 'normal ou funcionario ou admin',
   `remember_token` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
@@ -249,7 +252,8 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `password`, `tipo_user`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1, 'Marta', 'marta.isabel.5@hotmail.com', NULL, '$2y$10$joc3MHfQhIVvbRccIzsWOez/v4b78khxtYFjJ5/etqXqDwbRiKhWK', 'admin', NULL, '2021-03-02 15:30:14', '2021-03-02 15:30:14');
+(1, 'Marta', 'marta.isabel.5@hotmail.com', NULL, '$2y$10$joc3MHfQhIVvbRccIzsWOez/v4b78khxtYFjJ5/etqXqDwbRiKhWK', 'admin', NULL, '2021-03-02 15:30:14', '2021-03-02 15:30:14'),
+(3, 'jose', 'jose@gmail.com', NULL, '$2y$10$ft9Pub48RdEFuLAx1p.gu.xcAOQ1DwXYLfKeLTWvFYU.DrTCBNMXW', 'normal', NULL, '2021-04-13 16:37:02', '2021-04-13 16:37:02');
 
 --
 -- Índices para tabelas despejadas
@@ -337,7 +341,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT de tabela `equipamentos`
 --
 ALTER TABLE `equipamentos`
-  MODIFY `id_equipamento` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id_equipamento` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT de tabela `failed_jobs`
@@ -373,13 +377,13 @@ ALTER TABLE `migrations`
 -- AUTO_INCREMENT de tabela `reparacao_equipamento`
 --
 ALTER TABLE `reparacao_equipamento`
-  MODIFY `id_re` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id_re` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT de tabela `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- Restrições para despejos de tabelas
