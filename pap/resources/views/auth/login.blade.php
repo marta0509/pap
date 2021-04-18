@@ -33,13 +33,16 @@ Login
                   <input type="checkbox"> Check me out
                 </label>
               </div>
-                <div class="btn-group btn-group-justified" role="group" aria-label="...">
-                  <div class="btn-group" role="group">
-                    <a href="{{asset('register')}}" class="btn">Register</a>
+                <div>
+                  
+                  <div class="btn-group" role="group" style="align-items: left">
+                    <button type="submit" class="btn btn-primary" style="background-color: orange">Login</button>
                   </div>
-                  <div class="btn-group" role="group">
-                    <button type="submit" class="btn btn-primary">Login</button>
+
+                  <div class="btn-group" role="group" style="align-items: right">
+                    <a href="{{asset('register')}}" class="btn btn-primary" style="background-color: orange">Register</a>
                   </div>
+
                 </div>
             </form>
             <hr>

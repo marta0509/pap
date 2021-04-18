@@ -19,16 +19,38 @@ Registre-se
             <form action="{{route('register')}}" method="post">
                 @csrf
               <div class="form-group">
-                <label for="exampleInputEmail1">Nome</label>
-                <input type="text" name="name" class="form-control" id="exampleInputEmail1" placeholder="Email">
+                <label for="name">Nome</label>
+                <input type="text" name="name" class="form-control @error('name') is-invalid @enderror" id="name" value="{{ old('name') }}" required autocomplete="name" autofocus placeholder="Nome">
+                @error('name')
+                   <span class="invalid-feedback" role="alert">
+                   <strong>{{ $message }}</strong>
+                  </span>
+                @enderror
+
               </div>
               <div class="form-group">
-                <label for="exampleInputEmail1">Email address</label>
-                <input type="email" name="email" class="form-control" id="exampleInputEmail1" placeholder="Email">
+                <label for="email">Email address</label>
+                <input type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" id="email" placeholder="Email">
+                @error('email')
+                  <span class="invalid-feedback" role="alert">
+                  <strong>{{ $message }}</strong>
+                  </span>
+                @enderror
               </div>
               <div class="form-group">
-                <label for="exampleInputPassword1">Password</label>
-                <input type="password" name="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+                <label for="password">Password</label>
+                <input type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password" id="password" placeholder="Password">
+                @error('password')
+                 <span class="invalid-feedback" role="alert">
+                  <strong>{{ $message }}</strong>
+                  </span>
+               @enderror
+              </div>
+
+              <div class="form-group">
+                <label for="password-confirm">Confirm Password</label>
+                <input type="password" class="form-control" name="password_confirmation" required autocomplete="new-password" id="password-confirm" placeholder="Password">
+              
               </div>
               <div class="btn-group" role="group">
                    <button type="submit" class="btn btn-primary">Criar Registo</button>

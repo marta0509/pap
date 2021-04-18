@@ -1,12 +1,5 @@
 /*login*/
 
-body
-{
-	padding-top:50px;
-    background-color: white;
-    margin: 0px;
-}
-
 .login 
 {
     background: white; /* For browsers that do not support gradients */
@@ -15,18 +8,14 @@ body
     background: -moz-linear-gradient(top,rgba(50,50,50,0),rgba(50,50,50,1)); /*Fx 3.6-15*/
     background: linear-gradient(to top, rgba(50,50,50,0), rgba(50,50,50,1)); /*Standard*/
 
-    /*box-shadow: 0 8px 15px 0 rgba(0, 0, 10, 0.2), 0 6px 20px 0 rgba(0, 0, 10, 0.19);*/
+    box-shadow: 0 8px 15px 0 rgba(0, 0, 10, 0.2), 0 6px 20px 0 rgba(0, 0, 10, 0.19);
     box-shadow:-10px 10px 5px orange;
     color: orange;  /*cor do login*/
-    font-size: 18px;
+    font-size: 20px;
 }
 
 /*fim login*/
 
-.table
-{
-	border: 1px;
-}
 .logo
 {
 	height:100px;
@@ -75,3 +64,5 @@ body
 	right: 0%;
 	
 }
+
+

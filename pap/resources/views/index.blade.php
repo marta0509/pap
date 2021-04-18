@@ -3,7 +3,7 @@
 Bem-vindo
 @endsection
 @section('header')
-titulo
+Bem vindo à nossa loja
 @endsection
 @section('conteudo')
 Informações da loja,  imagens...

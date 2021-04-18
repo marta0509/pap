@@ -3,17 +3,18 @@
 Horario
 @endsection
 @section('header')
-<br><p style="color: red">Viste-nos</p>
+Visite-nos
 @endsection
 @section('conteudo')
  
 <div class="endereco">
 	<br>
 	<strong>Horário</strong>
-	<p>De Segunda a Sexta</p>
+	<hr>
+	<strong><p>De Segunda a Sexta</p></strong>
 	<p>Das 9:00h as 18:30h</p>
 	<hr>
-	<p>Sábado</p>
+	<strong><p>Sábado</p></strong>
 	<p>Das 9:00h as 13h</p>
 	<hr>
 	<p>Domingo e feriados estamos fechados.</p>

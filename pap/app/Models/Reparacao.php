@@ -16,11 +16,12 @@ class Reparacao extends Model
     protected $fillable=[
         'id_material',
         'descricao',
-        'preco'
+        'preco',
+        'data'
     ];
 
-    public function reparacao() 
+    public function reparacao_equipamento() 
     {
-    	return $this->belongsToMany('App\Models\Reparacao','reparacao_equipamento','id_reparacao','id_equipamento')->withTimestamps();
+        return $this->belongsToMany('App\Models\Reparacao','id_reparacao','id_equipamento')->withTimestamps();
     }
 }

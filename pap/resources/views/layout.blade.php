@@ -4,21 +4,23 @@
 	<meta charset="utf-8">
 	<title>@yield('titulo-pagina')</title> 
 	<link rel="stylesheet" type="text/css" href="{{asset('css/estilos.css')}}">
-	<link rel="stylesheet" type="text/js" href="{{asset('js/estilos.js')}}">
+	<link rel="stylesheet" type="text/css" href="{{asset('css/bootstrap.min.css')}}">
+	<link rel="stylesheet" type="text/css" href="{{asset('css/all.min.css')}}">
+	<link rel="stylesheet" type="text/css" href="{{asset('css/fontawesome.min.css')}}">
 	<link rel="stylesheet" type="text/css" href="grid/simple-grid.min.css">
 </head>
 <body>
 
 <!--Cabeçalho-->	
 	
-<div class="navbar">
+<!--<nav class="navbar">
 	<table class="table">
 		<tr>
 			<td>
 				<a href="/"><img class="logo" src="logo.png"></a>
 			</td>
 			<td >
-				<a id="link" href="{{route('clientes')}}">Area Cliente</a>
+				<a id="link" href="{{route('clientes.index')}}">Area Cliente</a>
 			</td>
 			<td >
 				<a id="link" href="{{route('perfil')}}">Perfil funcionário</a>
@@ -31,16 +33,50 @@
 			</td>
 		</tr>
 	</table>
-</div>
+</nav>-->
+	<nav class="navbar navbar-expand-lg navbar-light bg-light">
+	  <a class="navbar-brand" href="/"><img class="logo" src="logo.png"></a>
+	  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+	    <span class="navbar-toggler-icon"></span>
+	  </button>
+	  <div class="collapse navbar-collapse" id="navbarNavDropdown">
+	    <ul class="navbar-nav">
+	      <li class="nav-item active">
+	        <a class="nav-link" href="{{route('clientes.index')}}">Area Cliente <span class="sr-only">(current)</span></a>
+	      </li>
+	      <li class="nav-item">
+	        <a class="nav-link" href="{{route('perfil')}}">Perfil funcionario</a>
+	      </li>
+	      <li class="nav-item">
+	        <a class="nav-link" href="{{route('login')}}">Login</a>
+	      </li>
+	      <li class="nav-item dropdown">
+	        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+	          Informações
+	        </a>
+	        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+	          <a class="dropdown-item" href="somos">Somos</a>
+	          <a class="dropdown-item" href="horario">Horários</a>
+	          <a class="dropdown-item" href="contactos">Contactos</a>
+	        </div>
+	      </li>
+	    </ul>
+	  </div>
+	</nav>
+
 
 <!--conteudo-->
 <h1>@yield('header')</h1>
-	
+	<div class="container">
+		<div class="row">
+			<div class="col-md-12">
 	@yield('conteudo')
+			</div>
+		</div>
+	</div>	
 
 
-
-<!--Rodapé-->
+<!--Rodapé
 
 	<footer class="rodape">
 		<div style="text-align: left">
@@ -51,7 +87,12 @@
 			</ul>
 		</div>
 	</footer>
-	
+-->	
+	<script type="text/javascript" src="js/jquery-3.5.1.min.js"></script>
+	<script type="text/javascript" src="js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="js/all.min.js"></script>
+	<script type="text/javascript" src="js/fontawesome.min.js"></script>
+	<script type="text/javascript" src="js/estilos.js"></script>
 </body>
 </html>
 
