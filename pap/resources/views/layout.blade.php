@@ -44,13 +44,13 @@
 	      <li class="nav-item active">
 	        <a class="nav-link" href="{{route('clientes.index')}}">Area Cliente <span class="sr-only">(current)</span></a>
 	      </li>
-	      <li class="nav-item">
+	      <li class="nav-item active">
 	        <a class="nav-link" href="{{route('perfil')}}">Perfil funcionario</a>
 	      </li>
-	      <li class="nav-item">
+	      <li class="nav-item active">
 	        <a class="nav-link" href="{{route('login')}}">Login</a>
 	      </li>
-	      <li class="nav-item dropdown">
+	      <li class="nav-item dropdown active">
 	        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 	          Informações
 	        </a>

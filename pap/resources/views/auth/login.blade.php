@@ -28,11 +28,7 @@ Login
                 <label for="exampleInputPassword1">Password</label>
                 <input type="password" name="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
               </div>
-              <div class="checkbox">
-                <label>
-                  <input type="checkbox"> Check me out
-                </label>
-              </div>
+              
                 <div>
                   
                   <div class="btn-group" role="group" style="align-items: left">

@@ -7,17 +7,19 @@ use App\Models\Cliente;
 use App\Models\Equipamento;
 use App\Models\Reparacao;
 use App\Models\ReparacaoEquipamento;
+use App\Models\User;
 
 class ClientesController extends Controller
 {
    
     public function index()
     {
+        $utilizadores=User::all();
         $equipamentos=Equipamento::all();
         $reparacoes=Reparacao::all();
         $reparacao_equipamento=ReparacaoEquipamento::with('reparacao')->get();
         $clientes=Cliente::all();
-       return view('clientes.index',['clientes'=>$clientes, 'equipamentos'=>$equipamentos, 'reparacao'=>$reparacoes, 'repequip'=>$reparacao_equipamento]);
+       return view('clientes.index',['clientes'=>$clientes, 'equipamentos'=>$equipamentos, 'reparacao'=>$reparacoes, 'repequip'=>$reparacao_equipamento, 'utilizadores'=>$utilizadores]);
     }
 
     public function show(Request $request)
@@ -45,7 +47,7 @@ class ClientesController extends Controller
         $equipamento=Equipamento::create($novoEquipamento);
 
         return redirect()->route('clientes.index',[
-            'id'=>$equipamento->id_equipamento]);
+            'id'=>$equipamento->id_equipamento, 'clientes'=>$clientes, 'reparacao'=>$reparacoes, 'repequip'=>$reparacao_equipamento]);
     }
 
     public function delete (Request $request)

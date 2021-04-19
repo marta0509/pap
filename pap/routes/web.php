@@ -84,3 +84,7 @@ Route::patch('/reparacoes','App\Http\Controllers\ReparacoesController@update')->
 Route::get('/reparacoes/{id}/delete','App\Http\Controllers\ReparacoesController@delete')->name('equipamentos.delete');
 
 Route::delete('/reparacoes','App\Http\Controllers\EquipamentosController@destroy')->name('reparacoes.destroy');
+
+/*****Fornecedores*****/
+
+Route::get('/fornecedores','App\Http\Controllers\FornecedoresController@index')->name('fornecedores');

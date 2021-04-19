@@ -3,9 +3,19 @@
 Bem-vindo
 @endsection
 @section('header')
-Bem vindo à nossa loja
+<h3>Bem vindo à nossa loja</h3>
 @endsection
 @section('conteudo')
-Informações da loja,  imagens...
+<div class="container">
+	<div class="row">
+		<div class="col-md-6">
+			
+		</div>
+
+		<div class="col-md-6">
+
+		</div>
+	</div>
+</div>
 
 @endsection
