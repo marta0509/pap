@@ -7,11 +7,6 @@ Seja bem-vindo de volta!
 @endsection
 @section('conteudo')
  
-clientes:{{$clientes}}
-equipamento:{{$equipamentos}}
-repequip:{{$repequip}}
-rep:{{$reparacao}}
-utilizador:{{$utilizadores}}
 <br>
 	@if(auth()->check())
 		@if(Gate::allows('normal')|| Gate::allows('admin'))
@@ -21,12 +16,19 @@ utilizador:{{$utilizadores}}
 				<h5>
 					<b>Nome cliente:</b>{{$cliente->nome}}<br>
 					<b>Telefone:</b>{{$cliente->telefone}}<br>	
+					<strong><a href="{{route('clientes.create')}}">Adicionar Equipamento</a></strong>
 				</h5>
 
-				<h5>Seus equipamentos em reparação</h5>
+				@if(count($equipamentos)>0)
+				
+				
+							<h5>Seus equipamentos em reparação</h5>
+				
+
 	 				@foreach($equipamentos as $equipamento)
 	 					
-						@if ($cliente->id_cliente == $equipamento->id_cliente)	
+	 					
+	 					@if ($cliente->id_cliente == $equipamento->id_cliente)	
 			 				<hr>
 							<b>Marca:</b>{{$equipamento->marca}}<br>
 							<b>Descrição do equipamento:</b>{{$equipamento->descricao}}<br>
@@ -36,10 +38,9 @@ utilizador:{{$utilizadores}}
 										<b>Preço da reparção:</b>{{ $detalheReparacao->reparacao->preco}}€<br>
 										<b>Data da última atualização: </b>{{ $detalheReparacao->reparacao->data}}
 
-										
-										{{$utilizadores}}
+									
 
-											@elseif(Gate::allows('admin'))
+											@if(Gate::allows('admin'))
 		 										     
 												<div style="text-align: right; margin-right: 150px">
 													<a href="{{route('reparacoes.create')}}">Criar Reparação</a>
@@ -50,15 +51,23 @@ utilizador:{{$utilizadores}}
 												</div>
 												
 											
-											<br>					
+											<br>
+											@endif
 									@endif
+									
 								@endforeach
+
 						@endif
+
+					
+						
 					@endforeach
+				@endif
+					
 		<hr><hr><hr>
 				@endforeach
 		<br>			
-		<strong><a href="{{route('clientes.create')}}">Adicionar Equipamento</a></strong>
+		
 		@endif
 	@endif
 @endsection

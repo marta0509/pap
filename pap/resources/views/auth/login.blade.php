@@ -7,7 +7,7 @@
 Login
 @endsection
 @section('header')
-<br><p style="color: red">Viste-nos</p>
+
 @endsection
 @section('conteudo')
 <br><br><br>
