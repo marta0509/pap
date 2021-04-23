@@ -16,7 +16,9 @@ Seja bem-vindo de volta!
 				<h5>
 					<b>Nome cliente:</b>{{$cliente->nome}}<br>
 					<b>Telefone:</b>{{$cliente->telefone}}<br>	
+					@if(Gate::allows('admin'))
 					<strong><a href="{{route('clientes.create',['id'=>$cliente->id_cliente])}}">Adicionar Equipamento</a></strong>
+					@endif
 					
 				</h5>
 

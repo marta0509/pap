@@ -3,11 +3,11 @@
 Fornecedores
 @endsection
 @section('header')
-Stock
+Forncedores
 @endsection
 @section('conteudo')
 
-{{$fornecedores}}
+
 
 @if(auth()->check())
 		@if(Gate::allows('admin'))
