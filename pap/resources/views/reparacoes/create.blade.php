@@ -1,9 +1,9 @@
 @extends('layout')
 @section('titulo-pagina')
-Cliente
+Reparação
 @endsection
 @section('header')
-Seja bem-vindo de volta!
+
 @endsection
 @section('conteudo')
 	<form action="{{route('reparacoes.store')}}" method="post">

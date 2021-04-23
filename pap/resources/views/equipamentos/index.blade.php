@@ -10,7 +10,7 @@ Seja bem-vindo de volta!
 	@foreach($equipamentos as $equipamento)
 		Id cliente:{{$equipamento->id_cliente}}<br>
 		Nome:{{$equipamento->marca}}<br>
-		Telefone:{{$equipamento->descricao}}
+		Descrição:{{$equipamento->descricao}}
 
 	<div style="text-align: right; margin-right: 150px">
 		<a href="{{route('equipamentos.edit',['id'=>$equipamento->id_equipamento])}}">Editar</a>&nbsp&nbsp&nbsp

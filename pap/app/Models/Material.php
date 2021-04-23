@@ -15,6 +15,8 @@ class Material extends Model
 
     protected $fillable=[
         'designacao',
+        'stock',
+        'preco',
         'id_fornecedor'
     ];
    

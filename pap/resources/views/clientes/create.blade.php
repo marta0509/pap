@@ -6,15 +6,12 @@ Cliente
 Seja bem-vindo de volta!
 @endsection
 @section('conteudo')
-	<form action="{{route('clientes.store')}}" method="post">
+	<form action="{{route('equipamentos.store',['id'=>$clientes->id_cliente])}}" method="post">
 		@csrf
+		@method('patch')
 
-		Cliente:
-			<select name="id_cliente">
-				@foreach($clientes as $cliente)
-						<option value="{{$cliente->id_cliente}}">{{$cliente->nome}}</option>
-				@endforeach
-			</select>
+		Cliente: {{$clientes->nome}}
+				
 
 		<br><br>
 

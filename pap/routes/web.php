@@ -57,7 +57,7 @@ Route::get('/perfil','App\Http\Controllers\PerfilController@index')->name('perfi
 
 Route::get('/equipamentos','App\Http\Controllers\EquipamentosController@index')->name('equipamentos');
 
-Route::get('/equipamentos/create','App\Http\Controllers\EquipamentosController@create')->name('equipamentos.create');
+Route::get('/equipamentos/{id}/create','App\Http\Controllers\EquipamentosController@create')->name('equipamentos.create');
 
 Route::post('/equipamentos','App\Http\Controllers\EquipamentosController@store')->name('equipamentos.store');
 
@@ -88,3 +88,27 @@ Route::delete('/reparacoes','App\Http\Controllers\EquipamentosController@destroy
 /*****Fornecedores*****/
 
 Route::get('/fornecedores','App\Http\Controllers\FornecedoresController@index')->name('fornecedores');
+
+Route::get('/fornecedores/create','App\Http\Controllers\FornecedoresController@create')->name('fornecedores.create');
+
+Route::post('/fornecedores','App\Http\Controllers\FornecedoresController@store')->name('fornecedores.store');
+
+Route::get('/fornecedores/{id}/edit','App\Http\Controllers\FornecedoresController@edit')->name('fornecedores.edit');
+
+Route::patch('/fornecedores','App\Http\Controllers\FornecedoresController@update')->name('fornecedores.update');
+
+Route::get('/fornecedores/{id}/delete','App\Http\Controllers\FornecedoresController@delete')->name('fornecedores.delete');
+
+Route::delete('/fornecedores','App\Http\Controllers\FornecedoresController@destroy')->name('fornecedores.destroy');
+
+/*****Materiais*****/
+
+Route::get('/materiais','App\Http\Controllers\MateriaisController@index')->name('materiais');
+
+Route::get('/materiais/create','App\Http\Controllers\MateriaisController@create')->name('materiais.create');
+
+Route::post('/materiais','App\Http\Controllers\MateriaisController@store')->name('materiais.store');
+
+Route::get('/materiais/{id}/delete','App\Http\Controllers\MateriaisController@delete')->name('materiais.delete');
+
+Route::delete('/materiais','App\Http\Controllers\MateriaisController@destroy')->name('materiais.destroy');

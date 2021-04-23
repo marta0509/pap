@@ -16,7 +16,8 @@ Seja bem-vindo de volta!
 				<h5>
 					<b>Nome cliente:</b>{{$cliente->nome}}<br>
 					<b>Telefone:</b>{{$cliente->telefone}}<br>	
-					<strong><a href="{{route('clientes.create')}}">Adicionar Equipamento</a></strong>
+					<strong><a href="{{route('clientes.create',['id'=>$cliente->id_cliente])}}">Adicionar Equipamento</a></strong>
+					
 				</h5>
 
 				@if(count($equipamentos)>0)

@@ -1,3 +1,11 @@
+@extends('layout')
+@section('titulo-pagina')
+Equipamentos
+@endsection
+@section('header')
+
+@endsection
+@section('conteudo')
 <form action="{{route('equipamentos.store')}}" method="post">
 	@csrf
 	
@@ -8,3 +16,5 @@
 	Descrição:<input type="text" name="descricao" value="{{$equipamento->descricao}}"><br>
 	<input type="submit" name="enviar">
 </form>
+
+@endsection

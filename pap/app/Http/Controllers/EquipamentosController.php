@@ -40,7 +40,7 @@ class EquipamentosController extends Controller
 
         $equipamento=Equipamento::create($novoEquipamento);
 
-        return redirect()->route('equipamentos.show',[
+        return redirect()->route('equipamentos.index',[
             'id'=>$equipamento->id_equipamento]);
     }
 

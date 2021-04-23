@@ -29,22 +29,23 @@ class ClientesController extends Controller
         return view ('clientes.index',['clientes'=>$clientes]);
     } 
 
-    public function create()
+    public function create(Request $request)
     {
+        $idCliente=$request->id;
+        $clientes=Cliente::Where('id_cliente',$idCliente)->first();
         $equipamentos=Equipamento::all();
-        $clientes=Cliente::all();
         return view ('clientes.create',['clientes'=>$clientes, 'equipamentos'=>$equipamentos]);      
     }
 
     public function store(Request $request)
     {
-        $novoEquipamento=$request->validate([
+        $novoCliente=$request->validate([
             'id_cliente'=>['required'],
             'marca'=>['required','min:1','max:50'],
             'descricao'=>['required','min:1','max:150'],
         ]);
     
-        $equipamento=Equipamento::create($novoEquipamento);
+        $equipamento=Equipamento::create($novoCliente);
 
         return redirect()->route('clientes.index',[
             'id'=>$equipamento->id_equipamento, 'clientes'=>$clientes, 'reparacao'=>$reparacoes, 'repequip'=>$reparacao_equipamento]);

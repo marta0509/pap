@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 18-Abr-2021 às 23:58
+-- Tempo de geração: 23-Abr-2021 às 18:51
 -- Versão do servidor: 10.4.17-MariaDB
 -- versão do PHP: 7.4.13
 
@@ -138,6 +138,8 @@ INSERT INTO `funcionarios` (`id_funcionario`, `nome`, `telefone`, `email`, `cont
 CREATE TABLE `materiais` (
   `id_material` int(11) NOT NULL,
   `designacao` varchar(80) NOT NULL,
+  `stock` int(11) NOT NULL,
+  `preco` int(11) NOT NULL,
   `id_fornecedor` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -145,10 +147,10 @@ CREATE TABLE `materiais` (
 -- Extraindo dados da tabela `materiais`
 --
 
-INSERT INTO `materiais` (`id_material`, `designacao`, `id_fornecedor`) VALUES
-(111, 'Placa Grafica', 1),
-(225, 'RAM', 3),
-(1025, 'Processador i7', 2);
+INSERT INTO `materiais` (`id_material`, `designacao`, `stock`, `preco`, `id_fornecedor`) VALUES
+(111, 'Placa Grafica', 15, 60, 1),
+(225, 'RAM', 3, 40, 3),
+(1025, 'Processador i7', 7, 300, 2);
 
 -- --------------------------------------------------------
 
@@ -353,7 +355,7 @@ ALTER TABLE `failed_jobs`
 -- AUTO_INCREMENT de tabela `fornecedores`
 --
 ALTER TABLE `fornecedores`
-  MODIFY `id_fornecedor` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id_fornecedor` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT de tabela `funcionarios`
@@ -365,7 +367,7 @@ ALTER TABLE `funcionarios`
 -- AUTO_INCREMENT de tabela `materiais`
 --
 ALTER TABLE `materiais`
-  MODIFY `id_material` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1026;
+  MODIFY `id_material` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1027;
 
 --
 -- AUTO_INCREMENT de tabela `migrations`
@@ -383,7 +385,7 @@ ALTER TABLE `reparacao_equipamento`
 -- AUTO_INCREMENT de tabela `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- Restrições para despejos de tabelas
