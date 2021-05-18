@@ -14,6 +14,9 @@ Equipamentos
 		Deverá ter no minimo 1 letra.
 	@endif
 	Descrição:<input type="text" name="descricao" value="{{$equipamento->descricao}}"><br>
+	@if($errors->has('descricao'))
+		Deverá ter no minimo 1 letra.
+	@endif
 	<input type="submit" name="enviar">
 </form>
 

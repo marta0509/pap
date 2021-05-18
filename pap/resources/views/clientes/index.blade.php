@@ -37,9 +37,9 @@ Seja bem-vindo de volta!
 							<b>Descrição do equipamento:</b>{{$equipamento->descricao}}<br>
 								@foreach($repequip as $detalheReparacao)
 			 						@if ($equipamento->id_equipamento == $detalheReparacao->id_equipamento)      
-										<b>Descrição da reparção:</b>{{ $detalheReparacao->reparacao->descricao }}<br>
-										<b>Preço da reparção:</b>{{ $detalheReparacao->reparacao->preco}}€<br>
-										<b>Data da última atualização: </b>{{ $detalheReparacao->reparacao->data}}
+										<b>Descrição da reparação:</b>{{ $detalheReparacao->reparacao->descricao }}<br>
+										<b>Preço da reparação:</b>{{ $detalheReparacao->preco}}€<br>
+										<b>Data da última atualização: </b>{{ $detalheReparacao->data}}
 
 									
 

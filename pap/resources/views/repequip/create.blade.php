@@ -9,7 +9,6 @@ Criar reparação
 	<form action="{{route('reparacoes.store')}}" method="post">
 		@csrf
 
-		
 		Material:
 			<select name="id_material">
 				@foreach($materiais as $material)
@@ -19,9 +18,20 @@ Criar reparação
 		
 		<br>
 		Descrição da reparação:
-			<input type="text" name="descricao">
+			<select name="descricao">
+				@foreach($reparacao as $reparacao)
+						<option value="{{$reparacao->id_reparacao}}">{{$reparacao->descricao}}</option>
+				@endforeach
+			</select>
 
+			Preço:
+			<input type="numeric" name="preco"><br>
+			
+			Data:<input type="date" name="data">
+		<br>
 		
+		Funcionario:
+			<input type="numeric" name="id_funcionario">
 		<br><br>
 		<input type="submit" name="enviar">
 	</form>

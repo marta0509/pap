@@ -15,9 +15,7 @@ class Reparacao extends Model
 
     protected $fillable=[
         'id_material',
-        'descricao',
-        'preco',
-        'data'
+        'descricao'     
     ];
 
     public function reparacao_equipamento() 

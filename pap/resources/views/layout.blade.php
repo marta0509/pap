@@ -8,6 +8,11 @@
 	<link rel="stylesheet" type="text/css" href="{{asset('css/all.min.css')}}">
 	<link rel="stylesheet" type="text/css" href="{{asset('css/fontawesome.min.css')}}">
 	<link rel="stylesheet" type="text/css" href="grid/simple-grid.min.css">
+	<script type="text/javascript" src="js/jquery-3.5.1.min.js"></script>
+	<script type="text/javascript" src="js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="js/all.min.js"></script>
+	<script type="text/javascript" src="js/fontawesome.min.js"></script>
+	<script type="text/javascript" src="js/estilos.js"></script>
 </head>
 <body>
 
@@ -88,11 +93,7 @@
 		</div>
 	</footer>
 -->	
-	<script type="text/javascript" src="js/jquery-3.5.1.min.js"></script>
-	<script type="text/javascript" src="js/bootstrap.min.js"></script>
-	<script type="text/javascript" src="js/all.min.js"></script>
-	<script type="text/javascript" src="js/fontawesome.min.js"></script>
-	<script type="text/javascript" src="js/estilos.js"></script>
+	
 </body>
 </html>
 

@@ -71,17 +71,17 @@ Route::delete('/equipamentos','App\Http\Controllers\EquipamentosController@destr
 
 /*****Reparações*****/
 
-Route::get('/reparacoes','App\Http\Controllers\ReparacoesController@index')->name('reparacoes');
+Route::get('/reparacoes','App\Http\Controllers\ReparacaoController@index')->name('reparacoes');
 
-Route::get('/reparacoes/create','App\Http\Controllers\ReparacoesController@create')->name('reparacoes.create');
+Route::get('/reparacoes/create','App\Http\Controllers\ReparacaoController@create')->name('reparacoes.create');
 
-Route::post('/reparacoes','App\Http\Controllers\ReparacoesController@store')->name('reparacoes.store');
+Route::post('/reparacoes','App\Http\Controllers\ReparacaoController@store')->name('reparacoes.store');
 
-Route::get('/reparacoes/{id}/edit','App\Http\Controllers\ReparacoesController@edit')->name('reparacoes.edit');
+Route::get('/reparacoes/{id}/edit','App\Http\Controllers\ReparacaoController@edit')->name('reparacoes.edit');
 
-Route::patch('/reparacoes','App\Http\Controllers\ReparacoesController@update')->name('reparacoes.update');
+Route::patch('/reparacoes','App\Http\Controllers\ReparacaoController@update')->name('reparacoes.update');
 
-Route::get('/reparacoes/{id}/delete','App\Http\Controllers\ReparacoesController@delete')->name('equipamentos.delete');
+Route::get('/reparacoes/{id}/delete','App\Http\Controllers\ReparacaoController@delete')->name('equipamentos.delete');
 
 Route::delete('/reparacoes','App\Http\Controllers\EquipamentosController@destroy')->name('reparacoes.destroy');
 

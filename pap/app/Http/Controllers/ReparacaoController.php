@@ -29,11 +29,9 @@ class ReparacaoController extends Controller
 
     public function create()
     {
-        $reparacoes=Reparacao::all();
-        $equipamentos=Equipamento::all();
-        $clientes=Cliente::all();
+       
         $materiais=Material::all();
-        return view ('reparacao.create',['clientes'=>$clientes, 'equipamentos'=>$equipamentos, 'reparacao'=>$reparacoes, 'materiais'=>$materiais]);      
+        return view ('reparacao.create',['materiais'=>$materiais]);      
     }
 
     public function store(Request $request)
@@ -41,8 +39,6 @@ class ReparacaoController extends Controller
         $novoReparacao=$request->validate([
             'id_material'=>['nullable','min:1','max:50'],
             'descricao'=>['nullable','min:1','max:150'],
-            'preco'=>['nullable','min:1','max:50'],
-            'data'=>['nullable'],
         ]);
     
         $reparacao=Reparacao::create($novoReparacao);
