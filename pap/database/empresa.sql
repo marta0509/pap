@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 23-Abr-2021 às 18:51
+-- Tempo de geração: 18-Maio-2021 às 20:35
 -- Versão do servidor: 10.4.17-MariaDB
 -- versão do PHP: 7.4.13
 
@@ -194,20 +194,18 @@ CREATE TABLE `password_resets` (
 CREATE TABLE `reparacao` (
   `id_reparacao` int(11) NOT NULL,
   `id_material` int(11) NOT NULL,
-  `descricao` varchar(80) NOT NULL,
-  `preco` double NOT NULL,
-  `data` date DEFAULT NULL
+  `descricao` varchar(80) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Extraindo dados da tabela `reparacao`
 --
 
-INSERT INTO `reparacao` (`id_reparacao`, `id_material`, `descricao`, `preco`, `data`) VALUES
-(0, 225, 'Ainda não foi visto pelo tecnico', 0, '2021-04-04'),
-(1, 111, 'Seu equipamento está pronto!', 50, '2021-04-04'),
-(2, 1025, 'Seu equipamento ainda está a ser analisado. ', 0, '2020-11-09'),
-(3, 225, 'Seu equipamento ainda não foi apresentado para o técnico. ', 0, '2021-04-03');
+INSERT INTO `reparacao` (`id_reparacao`, `id_material`, `descricao`) VALUES
+(0, 225, 'Ainda não foi visto pelo tecnico'),
+(1, 111, 'Seu equipamento está pronto!'),
+(2, 1025, 'Seu equipamento ainda está a ser analisado. '),
+(3, 225, 'Seu equipamento ainda não foi apresentado para o técnico. ');
 
 -- --------------------------------------------------------
 
@@ -219,17 +217,19 @@ CREATE TABLE `reparacao_equipamento` (
   `id_re` int(11) NOT NULL,
   `id_equipamento` int(11) NOT NULL,
   `id_reparacao` int(11) NOT NULL,
-  `id_funcionario` int(11) NOT NULL
+  `id_funcionario` int(11) NOT NULL,
+  `data` date DEFAULT NULL,
+  `preco` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Extraindo dados da tabela `reparacao_equipamento`
 --
 
-INSERT INTO `reparacao_equipamento` (`id_re`, `id_equipamento`, `id_reparacao`, `id_funcionario`) VALUES
-(1, 1, 1, 1),
-(4, 2, 3, 1),
-(2, 3, 2, 2);
+INSERT INTO `reparacao_equipamento` (`id_re`, `id_equipamento`, `id_reparacao`, `id_funcionario`, `data`, `preco`) VALUES
+(1, 1, 1, 1, NULL, NULL),
+(2, 3, 2, 2, NULL, NULL),
+(4, 2, 3, 1, NULL, NULL);
 
 -- --------------------------------------------------------
 
