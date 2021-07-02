@@ -6,26 +6,19 @@ Cliente
 Seja bem-vindo de volta!
 @endsection
 @section('conteudo')
-	<form action="{{route('equipamentos.store',['id'=>$clientes->id_cliente])}}" method="post">
+	<form action="{{route('clientes.store')}}" method="post">
 		@csrf
 		@method('patch')
 
-		Cliente: {{$clientes->nome}}
-				
+		Nome:<input type="text" name="nome" value="{{$cliente->nome}}"><br>
+		@if($errors->has('nome'))
+			Deverá ter no minimo 3 letra.
+		@endif
 
-		<br><br>
-
-		Marca:
-			<input type="text" name="marca"><br><br>
-			@if($errors->has('marca'))
-				Deverá ter no minimo 1 letra.
-			@endif
-
-		Descrição do equipamento:
-			<input type="text" name="descricao"><br>
-			@if($errors->has('descricao'))
-				Deverá ter no minimo 1 letra.
-			@endif
+		Telefone:<input type="text" name="telefone" value="{{$cliente->telefone}}"><br>
+		@if($errors->has('telefone'))
+			Deverá ter no minimo 9 letra.
+		@endif
 		
 		<br><br>
 		<input type="submit" name="enviar">

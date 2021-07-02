@@ -37,6 +37,8 @@ Route::get('/somos','App\Http\Controllers\SomosController@index')->name('somos')
 
 Route::get('/clientes','App\Http\Controllers\ClientesController@index')->name('clientes.index');
 
+Route::get('/clientes/{id}','App\Http\Controllers\ClientesController@show')->name('clientes.show');
+
 Route::get('/clientes/create','App\Http\Controllers\ClientesController@create')->name('clientes.create');
 
 Route::post('/clientes','App\Http\Controllers\ClientesController@store')->name('clientes.store');
@@ -47,7 +49,7 @@ Route::patch('/clientes','App\Http\Controllers\ClientesController@update')->name
 
 Route::get('/clientes/{id}/delete','App\Http\Controllers\ClientesController@delete')->name('clientes.delete');
 
-Route::delete('/equipamentos','App\Http\Controllers\ClientesController@destroy')->name('equipamentos.destroy');
+Route::delete('/clientes','App\Http\Controllers\ClientesController@destroy')->name('clientes.destroy');
 
 /*****perfil dos funcionarios-----admin *****/
 
@@ -71,17 +73,17 @@ Route::delete('/equipamentos','App\Http\Controllers\EquipamentosController@destr
 
 /*****Reparações*****/
 
-Route::get('/reparacoes','App\Http\Controllers\ReparacaoController@index')->name('reparacoes');
+Route::get('/reparacoes','App\Http\Controllers\ReparacoesController@index')->name('reparacoes');
 
-Route::get('/reparacoes/create','App\Http\Controllers\ReparacaoController@create')->name('reparacoes.create');
+Route::get('/reparacoes/create','App\Http\Controllers\ReparacoesController@create')->name('reparacoes.create');
 
-Route::post('/reparacoes','App\Http\Controllers\ReparacaoController@store')->name('reparacoes.store');
+Route::post('/reparacoes','App\Http\Controllers\ReparacoesController@store')->name('reparacoes.store');
 
-Route::get('/reparacoes/{id}/edit','App\Http\Controllers\ReparacaoController@edit')->name('reparacoes.edit');
+Route::get('/reparacoes/{id}/edit','App\Http\Controllers\ReparacoesController@edit')->name('reparacoes.edit');
 
-Route::patch('/reparacoes','App\Http\Controllers\ReparacaoController@update')->name('reparacoes.update');
+Route::patch('/reparacoes','App\Http\Controllers\ReparacoesController@update')->name('reparacoes.update');
 
-Route::get('/reparacoes/{id}/delete','App\Http\Controllers\ReparacaoController@delete')->name('equipamentos.delete');
+Route::get('/reparacoes/{id}/delete','App\Http\Controllers\ReparacoesController@delete')->name('equipamentos.delete');
 
 Route::delete('/reparacoes','App\Http\Controllers\EquipamentosController@destroy')->name('reparacoes.destroy');
 

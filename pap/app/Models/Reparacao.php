@@ -13,13 +13,23 @@ class Reparacao extends Model
 
     protected $table="reparacao";
 
+    public $timestamps = false;
+
     protected $fillable=[
         'id_material',
-        'descricao'     
+        'descricao',
+        'id_equipamento',
+        'preco',
+        'observacoes'     
     ];
 
     public function reparacao_equipamento() 
     {
         return $this->belongsToMany('App\Models\Reparacao','id_reparacao','id_equipamento')->withTimestamps();
+    }
+
+    public function material() 
+    {
+        return $this->belongsToMany('App\Models\Material','id_reparacao','id_material')->withTimestamps();
     }
 }

@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Cliente;
+use App\Models\Reparacao;
 use App\Models\Material;
 
 class ReparacoesController extends Controller
@@ -10,26 +12,38 @@ class ReparacoesController extends Controller
    
     public function index()
     {
-        return view('clientes');
+        $equipamentos=Equipamento::all();
+        $reparacoes=Reparacao::all();
+        $materiais=Material::all();
+        $reparacao_equipamento=ReparacaoEquipamento::with('reparacao')->get();
+        $clientes=Cliente::all();
+       return view('clientes.index',['clientes'=>$clientes, 'equipamentos'=>$equipamentos, 'reparacao'=>$reparacoes, 'repequip'=>$reparacao_equipamento, 'materiais'=>$materiais]);
     }
+
+    public function show(Request $request)
+    {
+        $idCliente=$request->id;
+        $clientes=Cliente::Where('id_cliente',$idCliente)->first();
+        return view ('clientes.index',['clientes'=>$clientes]);
+    } 
 
     public function create()
     {
-    	$material=Material::all();
-         return view ('reparacoes.create',['materiais'=>$material]);      
+       
+        $materiais=Material::all();
+        return view ('reparacoes.create',['materiais'=>$materiais]);      
     }
 
     public function store(Request $request)
     {
-        $novoEquipamento=$request->validate([
-            'id_cliente'=>['required'],
-            'marca'=>['required','min:1','max:50'],
-            'descricao'=>['required','min:1','max:150'],
+        $novoReparacao=$request->validate([
+            'id_material'=>['nullable','min:1','max:50'],
+            'descricao'=>['nullable','min:1','max:150'],
         ]);
     
-        $equipamento=Equipamento::create($novoEquipamento);
+        $reparacao=Reparacao::create($novoReparacao);
 
         return redirect()->route('clientes.index',[
-            'id'=>$equipamento->id_equipamento]);
+            'id'=>$reparacao->id_reparacao]);
     }
 }

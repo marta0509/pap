@@ -20,4 +20,8 @@ class Material extends Model
         'id_fornecedor'
     ];
    
+   public function reparacao()
+    {
+        return $this->belongsTo('App\Models\Reparacao','id_reparacao');
+    }
 }

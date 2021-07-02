@@ -7,34 +7,53 @@ use App\Models\Cliente;
 use App\Models\Equipamento;
 use App\Models\Reparacao;
 use App\Models\ReparacaoEquipamento;
+use App\Models\Material;
 use App\Models\User;
 
 class ClientesController extends Controller
 {
    
-    public function index()
+    public function old_index()
     {
         $utilizadores=User::all();
         $equipamentos=Equipamento::all();
         $reparacoes=Reparacao::all();
         $reparacao_equipamento=ReparacaoEquipamento::with('reparacao')->get();
         $clientes=Cliente::all();
-       return view('clientes.index',['clientes'=>$clientes, 'equipamentos'=>$equipamentos, 'reparacao'=>$reparacoes, 'repequip'=>$reparacao_equipamento, 'utilizadores'=>$utilizadores]);
+        $materiais=Material::all();
+
+       return view('clientes.index',['clientes'=>$clientes, 'equipamentos'=>$equipamentos, 'reparacao'=>$reparacoes, 'repequip'=>$reparacao_equipamento, 'utilizadores'=>$utilizadores, 'materiais'=>$materiais]);
     }
 
-    public function show(Request $request)
+    public function index()
+    {
+
+            $clientes=Cliente::all();     
+            return view('clientes.index',['clientes'=>$clientes]);
+
+    }
+
+    public function old_show(Request $request)
     {
         $idCliente=$request->id;
         $clientes=Cliente::Where('id_cliente',$idCliente)->first();
         return view ('clientes.index',['clientes'=>$clientes]);
     } 
 
+    public function show(Request $request)
+    {
+        $idCliente=$request->id;
+        $cliente=Cliente::where('id_cliente',$idCliente)->with(['equipamentos.reparacoes'])->first();
+        //dd($cliente);
+        return view ('clientes.show',['cliente'=>$cliente]);
+    } 
+
     public function create(Request $request)
     {
         $idCliente=$request->id;
         $clientes=Cliente::Where('id_cliente',$idCliente)->first();
-        $equipamentos=Equipamento::all();
-        return view ('clientes.create',['clientes'=>$clientes, 'equipamentos'=>$equipamentos]);      
+        
+        return view ('clientes.create',['clientes'=>$clientes]);      
     }
 
     public function store(Request $request)
@@ -51,19 +70,38 @@ class ClientesController extends Controller
             'id'=>$equipamento->id_equipamento, 'clientes'=>$clientes, 'reparacao'=>$reparacoes, 'repequip'=>$reparacao_equipamento]);
     }
 
+    public function edit (Request $request)
+    {
+        $idCliente=$request->id;
+        $clientes=Cliente::Where('id_cliente',$idCliente)->first();
+        return view ('clientes.edit',['clientes'=>$clientes]);
+    }
+
+    public function update (Request $request)
+    {
+        $idCliente=$request->id;
+        $clientes=Cliente::Where('id_cliente',$idCliente)->first();
+        $updateCliente = $request -> validate([
+                    'nome'=>['required','min:3', 'max:100'],
+                    'telefone'=>['required', 'max:9'],
+                    'email'=>['nullable'],
+                ]);
+        return view ('clientes.index',['clientes'=>$clientes]);
+    }
+
     public function delete (Request $request)
     {
-        $idEquipamento=$request->id;
-        $equipamento=Equipamento::where('id_equipamento',$idEquipamento)->first();
-        return view ('equipamentos.delete',['equipamento'=>$equipamento]);
+        $idCliente=$request->id;
+        $clientes=Cliente::where('id_cliente',$idCliente)->first();
+        return view ('clientes.delete',['clientes'=>$clientes]);
     }
 
     public function destroy (Request $request)
     {
-        $idEquipamento=$request->id;
-        $equipamento=Equipamento::findOrFail($idEquipamento);
-        $equipamento->delete();
+        $idCliente=$request->id;
+        $cliente=Cliente::findOrFail($idCliente);
+        $cliente->delete();
 
-        return  redirect()->route('equipamentos.index')->with('mensagem','Equipamento eliminado');
+        return  redirect()->route('clientes.index')->with('mensagem','Cliente eliminado');
     }
 }

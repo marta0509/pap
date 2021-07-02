@@ -21,7 +21,14 @@ Criar reparação
 		Descrição da reparação:
 			<input type="text" name="descricao">
 
+		<br>
+		Preço a pagar pela reparação:
+			<input type="text" name="preco">
 		
+		<br>
+		Observações da reparação:
+			<input type="text" name="observacoes">
+
 		<br><br>
 		<input type="submit" name="enviar">
 	</form>

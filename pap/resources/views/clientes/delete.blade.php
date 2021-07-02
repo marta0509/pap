@@ -6,9 +6,9 @@ Clientes
 
 @endsection
 @section('conteudo')
-<h2>Deseja eliminar este "{{$equipamento->marca}}" do cliente {{$equipamento->id_cliente}}?</h2>
+<h2>Deseja eliminar este "{{$clientes->nome}}"?</h2>
 
-<form method="post" action="{{route('clientes.destroy',['id'=>$equipamento->id_equipamento])}}">
+<form method="post" action="{{route('clientes.destroy',['id'=>$clientes->id_cliente])}}">
 	@csrf
 	@method('delete')
 	<input type="submit" name="Sim">

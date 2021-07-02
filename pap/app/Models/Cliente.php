@@ -13,15 +13,17 @@ class Cliente extends Model
 
     protected $table="clientes";
 
+    public $timestamps=false;
+
     protected $fillable=[
         'nome',
         'telefone',
         'email'
     ];
 
-    public function equipamento()
+    public function equipamentos()
     {
-        return $this->hasMany('App\Models\Equipamento','id_equipamento');
+        return $this->hasMany('App\Models\Equipamento','id_cliente');
     }
 
    

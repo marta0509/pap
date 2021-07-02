@@ -26,6 +26,10 @@ class Equipamento extends Model
         return $this->belongsTo('App\Models\Cliente','id_cliente');
     }
 
+    public function reparacoes() {
+        return $this->hasMany('App\Models\Reparacao','id_equipamento');
+    }
+
     public function reparacao_equipamento()
     {
        return $this->belongsToMany('App\Models\ReparacaoEquipamento','reparacao_equipamento','id_equipamento','id_reparacao')->withTimestamps();
