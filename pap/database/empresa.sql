@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 18-Maio-2021 às 20:35
+-- Tempo de geração: 16-Jul-2021 às 00:19
 -- Versão do servidor: 10.4.17-MariaDB
 -- versão do PHP: 7.4.13
 
@@ -39,8 +39,7 @@ CREATE TABLE `clientes` (
 --
 
 INSERT INTO `clientes` (`id_cliente`, `nome`, `telefone`, `email`) VALUES
-(1, 'jose', 915415554, ''),
-(2, 'joana', 914785559, 'maria@gmail.com'),
+(2, 'Maria Emilia Alves De Oliveira', 911541554, 'marta.isabel.5@hotmail.com'),
 (3, 'Marta', 915415554, 'a14177@aedah.pt');
 
 -- --------------------------------------------------------
@@ -194,18 +193,20 @@ CREATE TABLE `password_resets` (
 CREATE TABLE `reparacao` (
   `id_reparacao` int(11) NOT NULL,
   `id_material` int(11) NOT NULL,
-  `descricao` varchar(80) NOT NULL
+  `descricao` varchar(80) NOT NULL,
+  `id_equipamento` int(11) DEFAULT NULL,
+  `preco` int(11) DEFAULT NULL,
+  `observacoes` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Extraindo dados da tabela `reparacao`
 --
 
-INSERT INTO `reparacao` (`id_reparacao`, `id_material`, `descricao`) VALUES
-(0, 225, 'Ainda não foi visto pelo tecnico'),
-(1, 111, 'Seu equipamento está pronto!'),
-(2, 1025, 'Seu equipamento ainda está a ser analisado. '),
-(3, 225, 'Seu equipamento ainda não foi apresentado para o técnico. ');
+INSERT INTO `reparacao` (`id_reparacao`, `id_material`, `descricao`, `id_equipamento`, `preco`, `observacoes`) VALUES
+(1, 111, 'Seu equipamento está pronto!', 1, 215, 'Substituição da  Placa Gráfica'),
+(3, 225, 'Seu equipamento ainda não foi apresentado para o técnico. ', 2, 68, 'Substituição da RAM'),
+(4, 225, 'Ainda não foi visto pelo tecnico', 3, 89, 'Substituição da RAM');
 
 -- --------------------------------------------------------
 
@@ -219,17 +220,9 @@ CREATE TABLE `reparacao_equipamento` (
   `id_reparacao` int(11) NOT NULL,
   `id_funcionario` int(11) NOT NULL,
   `data` date DEFAULT NULL,
-  `preco` int(11) DEFAULT NULL
+  `preco` int(11) DEFAULT NULL,
+  `observacao` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Extraindo dados da tabela `reparacao_equipamento`
---
-
-INSERT INTO `reparacao_equipamento` (`id_re`, `id_equipamento`, `id_reparacao`, `id_funcionario`, `data`, `preco`) VALUES
-(1, 1, 1, 1, NULL, NULL),
-(2, 3, 2, 2, NULL, NULL),
-(4, 2, 3, 1, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -255,7 +248,8 @@ CREATE TABLE `users` (
 
 INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `password`, `tipo_user`, `remember_token`, `created_at`, `updated_at`) VALUES
 (1, 'Marta', 'marta.isabel.5@hotmail.com', NULL, '$2y$10$joc3MHfQhIVvbRccIzsWOez/v4b78khxtYFjJ5/etqXqDwbRiKhWK', 'admin', NULL, '2021-03-02 15:30:14', '2021-03-02 15:30:14'),
-(3, 'jose', 'jose@gmail.com', NULL, '$2y$10$ft9Pub48RdEFuLAx1p.gu.xcAOQ1DwXYLfKeLTWvFYU.DrTCBNMXW', 'normal', NULL, '2021-04-13 16:37:02', '2021-04-13 16:37:02');
+(3, 'Jose', 'jose@gmail.com', NULL, '$2y$10$ft9Pub48RdEFuLAx1p.gu.xcAOQ1DwXYLfKeLTWvFYU.DrTCBNMXW', 'admin', NULL, '2021-04-13 16:37:02', '2021-04-13 16:37:02'),
+(5, 'Marta Cliente', '_marta.isabel.5@hotmail.com', NULL, '$2y$10$joc3MHfQhIVvbRccIzsWOez/v4b78khxtYFjJ5/etqXqDwbRiKhWK', 'cliente', NULL, '2021-03-02 15:30:14', '2021-03-02 15:30:14');
 
 --
 -- Índices para tabelas despejadas
@@ -376,6 +370,12 @@ ALTER TABLE `migrations`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
+-- AUTO_INCREMENT de tabela `reparacao`
+--
+ALTER TABLE `reparacao`
+  MODIFY `id_reparacao` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+
+--
 -- AUTO_INCREMENT de tabela `reparacao_equipamento`
 --
 ALTER TABLE `reparacao_equipamento`
@@ -385,37 +385,7 @@ ALTER TABLE `reparacao_equipamento`
 -- AUTO_INCREMENT de tabela `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
-
---
--- Restrições para despejos de tabelas
---
-
---
--- Limitadores para a tabela `equipamentos`
---
-ALTER TABLE `equipamentos`
-  ADD CONSTRAINT `equipamentos_ibfk_1` FOREIGN KEY (`id_cliente`) REFERENCES `clientes` (`id_cliente`) ON DELETE CASCADE ON UPDATE CASCADE;
-
---
--- Limitadores para a tabela `materiais`
---
-ALTER TABLE `materiais`
-  ADD CONSTRAINT `materiais_ibfk_1` FOREIGN KEY (`id_fornecedor`) REFERENCES `fornecedores` (`id_fornecedor`) ON DELETE CASCADE ON UPDATE CASCADE;
-
---
--- Limitadores para a tabela `reparacao`
---
-ALTER TABLE `reparacao`
-  ADD CONSTRAINT `reparacao_ibfk_1` FOREIGN KEY (`id_material`) REFERENCES `materiais` (`id_material`) ON DELETE CASCADE ON UPDATE CASCADE;
-
---
--- Limitadores para a tabela `reparacao_equipamento`
---
-ALTER TABLE `reparacao_equipamento`
-  ADD CONSTRAINT `reparacao_equipamento_ibfk_1` FOREIGN KEY (`id_equipamento`) REFERENCES `equipamentos` (`id_equipamento`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `reparacao_equipamento_ibfk_2` FOREIGN KEY (`id_reparacao`) REFERENCES `reparacao` (`id_reparacao`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `reparacao_equipamento_ibfk_3` FOREIGN KEY (`id_funcionario`) REFERENCES `funcionarios` (`id_funcionario`) ON DELETE CASCADE ON UPDATE CASCADE;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

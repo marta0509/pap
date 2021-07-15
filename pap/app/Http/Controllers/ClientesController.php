@@ -9,7 +9,8 @@ use App\Models\Reparacao;
 use App\Models\ReparacaoEquipamento;
 use App\Models\Material;
 use App\Models\User;
-
+use Gate;
+use Auth;
 class ClientesController extends Controller
 {
    
@@ -27,8 +28,10 @@ class ClientesController extends Controller
 
     public function index()
     {
-
-            $clientes=Cliente::all();     
+            //se gate=normal
+            $clientes=Cliente::all();  
+            //else
+           // $cliente=...where('id', Auth::user()->id) ...
             return view('clientes.index',['clientes'=>$clientes]);
 
     }
@@ -43,8 +46,11 @@ class ClientesController extends Controller
     public function show(Request $request)
     {
         $idCliente=$request->id;
-        $cliente=Cliente::where('id_cliente',$idCliente)->with(['equipamentos.reparacoes'])->first();
-        //dd($cliente);
+        
+        $cliente=Cliente::where('id_cliente',$idCliente)->with(['equipamentos.reparacoes']);
+        
+        $cliente=$cliente->first();
+       // dd($cliente);
         return view ('clientes.show',['cliente'=>$cliente]);
     } 
 
@@ -86,7 +92,8 @@ class ClientesController extends Controller
                     'telefone'=>['required', 'max:9'],
                     'email'=>['nullable'],
                 ]);
-        return view ('clientes.index',['clientes'=>$clientes]);
+         $clientes->update($updateCliente);
+        return view ('clientes.show',['cliente'=>$clientes]);
     }
 
     public function delete (Request $request)

@@ -39,6 +39,10 @@ class ReparacoesController extends Controller
         $novoReparacao=$request->validate([
             'id_material'=>['nullable','min:1','max:50'],
             'descricao'=>['nullable','min:1','max:150'],
+            'id_equipamento'=>['nullable','min:1','max:50'],
+            'preco'=>['nullable','min:1','max:15'],
+            'observacoes'=>['nullable','min:1','max:150'],
+            
         ]);
     
         $reparacao=Reparacao::create($novoReparacao);

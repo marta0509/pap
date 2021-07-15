@@ -23,7 +23,7 @@ class Equipamento extends Model
 
     public function cliente()
     {
-        return $this->belongsTo('App\Models\Cliente','id_cliente');
+        return $this->belongsTo('App\Models\User','id', 'id_cliente');
     }
 
     public function reparacoes() {

@@ -30,19 +30,36 @@ class AuthServiceProvider extends ServiceProvider
 
     Gate::define('admin', function($user){
         if($user->tipo_user=='admin'){
-              return true;
+              return true;  //admin
         }
         else{
-              return false;
+              return false; //normal
         }
     });
 
     Gate::define('normal', function($user){
-        if($user->tipo_user=='normal'){
+        if($user->tipo_user=='normal' || $user->tipo_user=='admin'){
              return true;
         }
         else{
             return false;
+        }
+    });
+
+
+
+    Gate::define('proprietario', function($user, $equipamentos){
+        if ($user->tipo_user!='admin' && $user->tipo_user!='normal')
+        {
+           if($user->id==$equipamentos->id_cliente){
+             return true;
+            }
+            else{
+                return false;
+            } 
+        }
+        else{
+            return true;
         }
     });
 

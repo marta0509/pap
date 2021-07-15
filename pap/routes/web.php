@@ -45,7 +45,7 @@ Route::post('/clientes','App\Http\Controllers\ClientesController@store')->name('
 
 Route::get('/clientes/{id}/edit','App\Http\Controllers\ClientesController@edit')->name('clientes.edit');
 
-Route::patch('/clientes','App\Http\Controllers\ClientesController@update')->name('clientes.update');
+Route::patch('/clientes/{id}','App\Http\Controllers\ClientesController@update')->name('clientes.update');
 
 Route::get('/clientes/{id}/delete','App\Http\Controllers\ClientesController@delete')->name('clientes.delete');
 

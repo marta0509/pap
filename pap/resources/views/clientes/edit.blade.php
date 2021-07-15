@@ -6,7 +6,7 @@ Cliente
 Edite aqui o seu perfil
 @endsection
 @section('conteudo')
-	<form action="{{route('clientes.edit',$clientes->id_cliente)}}" method="post">
+	<form action="{{route('clientes.update',$clientes->id_cliente)}}" method="post">
 		@csrf
 		@method('patch')
 
