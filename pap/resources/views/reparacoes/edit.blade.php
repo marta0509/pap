@@ -19,19 +19,19 @@ Reparações
 
 	<label class="col-sm-2 col-form-label">Descrição:</label>
 	<input class="form-control" type="text" name="descricao" value="{{$reparacao->descricao}}"><br><br>
-	@if($errors->has('telefone'))
+	@if($errors->has('descricao'))
 		Deverá ter no minimo 1 caracter.
 	@endif
 
 	<label class="col-sm-2 col-form-label">Preço:</label>
 	<input class="form-control" type="text" name="preco" value="{{$reparacao->preco}}"><br><br>
-	@if($errors->has('email'))
+	@if($errors->has('preco'))
 		Deverá ter no minimo 1 caracter.
 	@endif
 
 	<label class="col-sm-2 col-form-label">Observações:</label>
 	<input class="form-control" type="text" name="observacoes" value="{{$reparacao->observacoes}}"><br><br>
-	@if($errors->has('email'))
+	@if($errors->has('observacoes'))
 		Deverá ter no minimo 1 caracter.
 	@endif
 
