@@ -30,6 +30,7 @@ class Reparacao extends Model
 
     public function material() 
     {
-        return $this->belongsToMany('App\Models\Material','id_reparacao','id_material')->withTimestamps();
+         return $this->belongsTo('App\Models\Material','id_material');
+        //return $this->belongsToMany('App\Models\Material','id_reparacao','id_material')->withTimestamps();
     }
 }

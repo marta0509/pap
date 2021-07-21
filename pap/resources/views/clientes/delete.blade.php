@@ -11,7 +11,7 @@ Clientes
 <form method="post" action="{{route('clientes.destroy',['id'=>$clientes->id_cliente])}}">
 	@csrf
 	@method('delete')
-	<input type="submit" name="Sim">
+	<input class="form-control" type="submit" name="Sim">
 	
 </form>
 

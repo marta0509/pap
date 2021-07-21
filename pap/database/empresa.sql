@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 16-Jul-2021 às 00:19
+-- Tempo de geração: 21-Jul-2021 às 17:53
 -- Versão do servidor: 10.4.17-MariaDB
 -- versão do PHP: 7.4.13
 
@@ -29,9 +29,9 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `clientes` (
   `id_cliente` int(11) NOT NULL,
-  `nome` varchar(80) NOT NULL,
-  `telefone` int(9) NOT NULL,
-  `email` varchar(30) NOT NULL
+  `nome` varchar(80) DEFAULT NULL,
+  `telefone` int(9) DEFAULT NULL,
+  `email` varchar(30) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -39,8 +39,9 @@ CREATE TABLE `clientes` (
 --
 
 INSERT INTO `clientes` (`id_cliente`, `nome`, `telefone`, `email`) VALUES
-(2, 'Maria Emilia Alves De Oliveira', 911541554, 'marta.isabel.5@hotmail.com'),
-(3, 'Marta', 915415554, 'a14177@aedah.pt');
+(2, 'Maria Emilia Alves De Oliveira', 911541556, 'marta.isabel.5@hotmail.com'),
+(3, 'Marta', 915415554, 'a14177@aedah.pt'),
+(5, 'Tonys', 932558741, 'jose@gmail.com');
 
 -- --------------------------------------------------------
 
@@ -63,7 +64,11 @@ INSERT INTO `equipamentos` (`id_equipamento`, `id_cliente`, `marca`, `descricao`
 (1, 1, 'Hp', 'Impressora'),
 (2, 1, 'Lenovo', 'Yoga'),
 (3, 1, 'MacBook', '10.2'),
-(8, 3, 'Hp\'s', 'ola');
+(8, 3, 'Hp\'s', 'ola'),
+(9, 4, 'Sony', 'Pony'),
+(10, 4, 'Samsung', 'S21'),
+(11, 2, 'Hp', 'impressora 1600r'),
+(13, 5, 'Hp', 'PC');
 
 -- --------------------------------------------------------
 
@@ -101,32 +106,7 @@ CREATE TABLE `fornecedores` (
 INSERT INTO `fornecedores` (`id_fornecedor`, `nome`, `telefone`, `email`) VALUES
 (1, 'Manuel Ferreira', 936587412, 'mferreira@gmail.pt'),
 (2, 'Vitor Alves', 914785598, 'vitoralves@gmail.com'),
-(3, 'Antonio Pereira', 912369852, 'apererira@gmail.com');
-
--- --------------------------------------------------------
-
---
--- Estrutura da tabela `funcionarios`
---
-
-CREATE TABLE `funcionarios` (
-  `id_funcionario` int(11) NOT NULL,
-  `nome` varchar(80) NOT NULL,
-  `telefone` int(9) NOT NULL,
-  `email` varchar(50) NOT NULL,
-  `contrato` varchar(20) NOT NULL,
-  `salario` int(11) NOT NULL,
-  `horas` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Extraindo dados da tabela `funcionarios`
---
-
-INSERT INTO `funcionarios` (`id_funcionario`, `nome`, `telefone`, `email`, `contrato`, `salario`, `horas`) VALUES
-(1, 'Inês', 932458784, 'ines@gmail.com', '', 0, 0),
-(2, 'Mariana Moreira', 914567889, 'marianamoreira88@gmail.com', '', 0, 0),
-(3, 'Tiago Freitas', 936855998, 'tiagoo12@gmail.com', '', 0, 0);
+(6, 'Antonio', 252369874, 'apereira@gmail.com');
 
 -- --------------------------------------------------------
 
@@ -149,7 +129,8 @@ CREATE TABLE `materiais` (
 INSERT INTO `materiais` (`id_material`, `designacao`, `stock`, `preco`, `id_fornecedor`) VALUES
 (111, 'Placa Grafica', 15, 60, 1),
 (225, 'RAM', 3, 40, 3),
-(1025, 'Processador i7', 7, 300, 2);
+(1025, 'Processador i7', 7, 300, 2),
+(1027, 'Motherboard', 5, 100, 1);
 
 -- --------------------------------------------------------
 
@@ -206,23 +187,8 @@ CREATE TABLE `reparacao` (
 INSERT INTO `reparacao` (`id_reparacao`, `id_material`, `descricao`, `id_equipamento`, `preco`, `observacoes`) VALUES
 (1, 111, 'Seu equipamento está pronto!', 1, 215, 'Substituição da  Placa Gráfica'),
 (3, 225, 'Seu equipamento ainda não foi apresentado para o técnico. ', 2, 68, 'Substituição da RAM'),
-(4, 225, 'Ainda não foi visto pelo tecnico', 3, 89, 'Substituição da RAM');
-
--- --------------------------------------------------------
-
---
--- Estrutura da tabela `reparacao_equipamento`
---
-
-CREATE TABLE `reparacao_equipamento` (
-  `id_re` int(11) NOT NULL,
-  `id_equipamento` int(11) NOT NULL,
-  `id_reparacao` int(11) NOT NULL,
-  `id_funcionario` int(11) NOT NULL,
-  `data` date DEFAULT NULL,
-  `preco` int(11) DEFAULT NULL,
-  `observacao` varchar(255) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+(4, 225, 'Ainda não foi visto pelo tecnico', 3, 89, 'Substituição da RAM'),
+(16, 1025, 'Substituição do processador.', 11, 150, 'Está a ser finalizada a reparação do seu equipamento.');
 
 -- --------------------------------------------------------
 
@@ -282,12 +248,6 @@ ALTER TABLE `fornecedores`
   ADD PRIMARY KEY (`id_fornecedor`);
 
 --
--- Índices para tabela `funcionarios`
---
-ALTER TABLE `funcionarios`
-  ADD PRIMARY KEY (`id_funcionario`);
-
---
 -- Índices para tabela `materiais`
 --
 ALTER TABLE `materiais`
@@ -314,15 +274,6 @@ ALTER TABLE `reparacao`
   ADD KEY `id_equipamento` (`id_material`);
 
 --
--- Índices para tabela `reparacao_equipamento`
---
-ALTER TABLE `reparacao_equipamento`
-  ADD PRIMARY KEY (`id_re`),
-  ADD KEY `id_equipamento` (`id_equipamento`,`id_reparacao`,`id_funcionario`),
-  ADD KEY `id_reparacao` (`id_reparacao`),
-  ADD KEY `id_funcionario` (`id_funcionario`);
-
---
 -- Índices para tabela `users`
 --
 ALTER TABLE `users`
@@ -334,10 +285,16 @@ ALTER TABLE `users`
 --
 
 --
+-- AUTO_INCREMENT de tabela `clientes`
+--
+ALTER TABLE `clientes`
+  MODIFY `id_cliente` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
 -- AUTO_INCREMENT de tabela `equipamentos`
 --
 ALTER TABLE `equipamentos`
-  MODIFY `id_equipamento` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id_equipamento` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT de tabela `failed_jobs`
@@ -349,19 +306,13 @@ ALTER TABLE `failed_jobs`
 -- AUTO_INCREMENT de tabela `fornecedores`
 --
 ALTER TABLE `fornecedores`
-  MODIFY `id_fornecedor` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
-
---
--- AUTO_INCREMENT de tabela `funcionarios`
---
-ALTER TABLE `funcionarios`
-  MODIFY `id_funcionario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id_fornecedor` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT de tabela `materiais`
 --
 ALTER TABLE `materiais`
-  MODIFY `id_material` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1027;
+  MODIFY `id_material` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1029;
 
 --
 -- AUTO_INCREMENT de tabela `migrations`
@@ -373,13 +324,7 @@ ALTER TABLE `migrations`
 -- AUTO_INCREMENT de tabela `reparacao`
 --
 ALTER TABLE `reparacao`
-  MODIFY `id_reparacao` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
-
---
--- AUTO_INCREMENT de tabela `reparacao_equipamento`
---
-ALTER TABLE `reparacao_equipamento`
-  MODIFY `id_re` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id_reparacao` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT de tabela `users`

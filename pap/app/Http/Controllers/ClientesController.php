@@ -29,11 +29,13 @@ class ClientesController extends Controller
     public function index()
     {
             //se gate=normal
+        
             $clientes=Cliente::all();  
             //else
-           // $cliente=...where('id', Auth::user()->id) ...
+            
+           //$cliente=Cliente::where('id', Auth::user()->id)::with('clientes')
             return view('clientes.index',['clientes'=>$clientes]);
-
+    
     }
 
     public function old_show(Request $request)
@@ -65,15 +67,15 @@ class ClientesController extends Controller
     public function store(Request $request)
     {
         $novoCliente=$request->validate([
-            'id_cliente'=>['required'],
-            'marca'=>['required','min:1','max:50'],
-            'descricao'=>['required','min:1','max:150'],
+            'nome'=>['required', 'min:5','max:50'],
+            'telefone'=>['required','min:9','max:13'],
+            'email'=>['nullable','email','max:150'],
         ]);
     
-        $equipamento=Equipamento::create($novoCliente);
+        $cliente=Cliente::create($novoCliente);
 
-        return redirect()->route('clientes.index',[
-            'id'=>$equipamento->id_equipamento, 'clientes'=>$clientes, 'reparacao'=>$reparacoes, 'repequip'=>$reparacao_equipamento]);
+        return redirect()->route('clientes.show',[
+            'id'=>$cliente->id_cliente]);
     }
 
     public function edit (Request $request)

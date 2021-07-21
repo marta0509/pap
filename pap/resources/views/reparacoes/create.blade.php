@@ -6,30 +6,30 @@ Reparação
 Criar reparação
 @endsection
 @section('conteudo')
-	<form action="{{route('reparacoes.store')}}" method="post">
+	<form action="{{route('reparacoes.store',['id'=>$equipamento->id_equipamento])}}" method="post">
 		@csrf
 
 		
-		Material:
-			<select name="id_material">
+		<label class="col-sm-2 col-form-label">Material:</label>
+			<select class="form-control" name="id_material">
 				@foreach($materiais as $material)
 						<option value="{{$material->id_material}}">{{$material->designacao}}</option>
 				@endforeach
 			</select>
 		
 		<br>
-		Descrição da reparação:
-			<input type="text" name="descricao">
+		<label class="col-sm-2 col-form-label">Descrição:</label>
+			<input class="form-control" type="text" name="descricao" value="{{old('descricao')}}">
 
-		<br>
-		Preço a pagar pela reparação:
-			<input type="text" name="preco">
 		
-		<br>
-		Observações da reparação:
-			<input type="text" name="observacoes">
+		<label class="col-sm-2 col-form-label">Preço da reparação:</label>
+			<input class="form-control" type="text" name="preco" value="{{old('preco')}}">
+		
+		
+		<label class="col-sm-2 col-form-label">Observações:</label>
+			<input class="form-control" type="text" name="observacoes" value="{{old('observacoes')}}">
 
-		<br><br>
-		<input type="submit" name="enviar">
+	<br>
+		<input class="form-control" type="submit" name="enviar">
 	</form>
 @endsection

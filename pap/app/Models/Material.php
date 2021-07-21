@@ -12,7 +12,7 @@ class Material extends Model
     protected $primaryKey="id_material";
 
     protected $table="materiais";
-
+    public $timestamps = false;
     protected $fillable=[
         'designacao',
         'stock',

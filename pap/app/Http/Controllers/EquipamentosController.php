@@ -24,24 +24,28 @@ class EquipamentosController extends Controller
         return view ('equipamentos.show',['equipamentos'=>$equipamentos,'clientes'=>$clientes]);
     } 
 
-    public function create()
+    public function create(Request $request)
     {
-        return view ('equipamentos.create');
+        $idC = $request->id;
+        $cliente = Cliente::where('id_cliente', $idC)->first();
+        return view ('equipamentos.create', ['cliente'=>$cliente]);
     }
 
     public function store(Request $request)
     {
+        $idC = $request->id;
+        $cliente = Cliente::where('id_cliente', $idC)->first();
         $novoEquipamento=$request->validate([
-            'id_cliente'=>['required'],
+           
             'marca'=>['required','min:1','max:50'],
             'descricao'=>['required','min:1','max:150'],
         ]);
     
-
+        $novoEquipamento['id_cliente']=$idC;
         $equipamento=Equipamento::create($novoEquipamento);
 
-        return redirect()->route('clientes.index',[
-            'id'=>$equipamento->id_equipamento]);
+        return redirect()->route('clientes.show',[
+            'id'=>$idC]);
     }
 
     public function edit (Request $request)
@@ -58,14 +62,14 @@ class EquipamentosController extends Controller
         $equipamento=Equipamento::findOrFail($idEquipamento);
 
         $atualizarEquipamento=$request->validate([
-            'id_cliente'=>['required'],
+            
             'marca'=>['required','min:1','max:50'],
             'descricao'=>['required','min:1','max:150'],
         ]);
-
+         $atualizarEquipamento['id_cliente']=$equipamento->id_cliente;
         $equipamento->update($atualizarEquipamento);
 
-        return redirect()->route('equipamentos.show',['id'=>$equipamento->id_equipamento]);
+        return redirect()->route('clientes.show',['id'=>$equipamento->id_cliente]);
     }
 
     public function delete (Request $request)

@@ -3,40 +3,48 @@
 Cliente
 @endsection
 @section('header')
-Seja bem-vindo de volta!
 @endsection
 @section('conteudo')
 
-<h5>{{$cliente->nome}}</h5>
-@foreach ($cliente->equipamentos as $equipamentos)
-	<b>Marca do equipamento:</b>{{$equipamentos->marca}}<br>
-	<b>Descrição do equipamento:</b>{{$equipamentos->descricao}}<br>
-	
-	<a href="{{route('reparacoes.create')}}">Criar Reparação</a>
-		&nbsp&nbsp&nbsp
-	<br><br><br>
-	@if(count($equipamentos->reparacoes)>0)
-		<h3>Reparações</h3>
-	
-
-	<br>
-
-	@foreach ($equipamentos->reparacoes as $reparacoes)
-	<b>Descrição da reparação:</b>{{$reparacoes->descricao}}<br>
-	<b>Preço a pagar pela reparação:</b>{{$reparacoes->preco}}€<br>
-	<b>Observações da reparação:</b>{{$reparacoes->observacoes}}<br>
-	<div style="text-align: right; margin-right: 150px">
-		
-		<a href="{{route('equipamentos.edit',['id'=>$equipamentos->id_equipamento])}}">Editar</a>
-		&nbsp&nbsp&nbsp
-		<a href="{{route('equipamentos.delete',['id'=>$equipamentos->id_equipamento])}}">Apagar</a>
-	</div>
-	<hr>
-	
-
-	@endforeach
-	@endif
+<h3>Seja bem-vindo de volta,{{$cliente->nome}}</h3>
 <br>
-@endforeach
+<h5>Lista de equipamento</h5>
 
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">ID</th>
+      <th scope="col">Marca </th>
+      <th scope="col">Descrição</th>
+      @if(Gate::allows('admin'))
+      <th scope="col">     </th>
+   	  <th scope="col">     </th>
+      @endif
+   	  <th scope="col">     </th>
+    </tr>
+  </thead>
+  <tbody>
+  	@foreach ($cliente->equipamentos as $equipamentos)
+<tr>
+
+<td>{{$equipamentos->id_equipamento}}</td>
+	<td>{{$equipamentos->marca}}</td>
+	<td>{{$equipamentos->descricao}}</td>
+
+	@if(Gate::allows('admin'))
+	<td><a style="color: orange" href="{{route('equipamentos.edit',['id'=>$equipamentos->id_equipamento])}}"><i class="fas fa-pencil-alt"></i></a></td>
+
+	<td><a style="color: orange" href="{{route('reparacoes.create',['id'=>$equipamentos->id_equipamento])}}"><i class="fas fa-plus"></i></a></td>
+  @endif
+
+	<td><a style="color: orange" href="{{route('reparacoes.show',['id'=>$equipamentos->id_equipamento])}}"><i class="fas fa-search"></i></a></td>
+	
+ </tr>
+    @endforeach 
+  </tbody>
+</table>
+
+@if(Gate::allows('admin'))
+<a style="color: orange" href="{{route('equipamentos.create', ['id'=>$cliente->id_cliente])}}"><i class="fas fa-plus"></i></a>
+@endif
 @endsection

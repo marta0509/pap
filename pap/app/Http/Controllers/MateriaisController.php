@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Material;
+use App\Models\Fornecedor;
 
 class MateriaisController extends Controller
 {
@@ -23,23 +24,23 @@ class MateriaisController extends Controller
 
     public function create()
     {
-        $materiais=Material::all();
-        return view ('materiais.create',['materiais'=>$materiais]);      
+        $fornecedores = Fornecedor::all();
+        return view ('materiais.create',['fornecedores'=>$fornecedores]);      
     }
 
     public function store(Request $request)
     {
+       
         $novoMaterial=$request->validate([
             'designacao'=>['required','min:1',],
-            'stock'=>['required'],
-            'preco'=>['required'],
+            'stock'=>['required', 'numeric'],
+            'preco'=>['required', 'numeric'],
             'id_fornecedor'=>['required'],
         ]);
-    
+     
         $materiais=Material::create($novoMaterial);
 
-        return redirect()->route('materiais.index',[
-            'id'=>$fomaterial->id_material]);
+        return redirect()->route('materiais');
     }
 
     public function delete (Request $request)
@@ -55,6 +56,6 @@ class MateriaisController extends Controller
         $material=Material::findOrFail($idMaterial);
         $material->delete();
 
-        return  redirect()->route('materiais.index')->with('mensagem','Material eliminado');
+        return  redirect()->route('materiais')->with('mensagem','Material eliminado');
     }
 }

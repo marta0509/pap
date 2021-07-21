@@ -22,8 +22,9 @@ class FornecedoresController extends Controller
         return view ('fornecedores.index',['fornecedores'=>$fornecedores]);
     } 
 
-    public function create()
+    public function create(Request $request)
     {
+        $idFornecedor=$request->id;
         $fornecedores=Fornecedor::all();
         return view ('fornecedores.create',['fornecedores'=>$fornecedores]);      
     }
@@ -39,7 +40,7 @@ class FornecedoresController extends Controller
     
         $fornecedores=Fornecedor::create($novoFornecedor);
 
-        return redirect()->route('fornecedores.index',[
+        return redirect()->route('fornecedores',[
             'id'=>$fornecedor->id_fornecedor]);
     }
 

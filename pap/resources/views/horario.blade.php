@@ -21,7 +21,7 @@ Visite-nos
 	<br>
 	<strong>Morada</strong>
 	<p>Rua Carvalhais, 4780-415, Santo Tirso - Porto</p>
-	"Mapa Google"
+	
 	<br>
 </div>
 

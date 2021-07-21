@@ -3,28 +3,37 @@
 Fornecedores
 @endsection
 @section('header')
-Forncedores
+Fornecedores
 @endsection
 @section('conteudo')
 
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">ID</th>
+      <th scope="col">Nome</th>
+      <th scope="col">Telefone</th>
+      <th scope="col">Email</th>
+      <th scope="col">   </th>
+      <th scope="col">   </th>
+      <th scope="col">   </th>
+    </tr>
+  </thead>
+  <tbody>
+  	@foreach($fornecedores as $fornecedor)
+<tr>
 
+	<td>{{$fornecedor->id_fornecedor}}</td>
+	<td>{{$fornecedor->nome}}</td>
+	<td>{{$fornecedor->telefone}}</td>
+	<td>{{$fornecedor->email}}</td>
+	<td><a style="color: orange" href="{{route('fornecedores.edit',['id'=>$fornecedor->id_fornecedor])}}"><i class="fas fa-pencil-alt"></i></a></td>
+  <td><a style="color: orange" href="{{route('fornecedores.delete',['id'=>$fornecedor->id_fornecedor])}}"><i class="fas fa-trash"></i></a></td>
+	
+ </tr>
+    @endforeach 
+  </tbody>
+</table>
 
-@if(auth()->check())
-		@if(Gate::allows('admin'))
-<br><br>
-			@foreach($fornecedores as $fornecedor)
-				<b>Nome:</b>{{$fornecedor->nome}}<br>
-				<b>Telefone:</b>{{$fornecedor->telefone}}<br>	
-				<b>Email:</b>{{$fornecedor->email}}<br>	
-				
-				<div style="text-align: right; margin-right: 150px">
-					<strong><a href="{{route('fornecedores.edit',['id'=>$fornecedor->id_fornecedor])}}">Editar Fornecedor</a></strong>
-					<strong><a href="{{route('fornecedores.delete',['id'=>$fornecedor->id_fornecedor])}}">Eliminar Fornecedor</a></strong>
-				</div>
-				<hr>
-			@endforeach
-
-			<strong><a href="{{route('fornecedores.create')}}">Adicionar Fornecedores</a></strong>
-		@endif
-@endif
+<a style="color: orange" href="{{route('fornecedores.create')}}"><i class="fas fa-plus"></i></a>
 @endsection

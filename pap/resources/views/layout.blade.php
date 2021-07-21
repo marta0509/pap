@@ -13,6 +13,7 @@
 	<script type="text/javascript" src="js/all.min.js"></script>
 	<script type="text/javascript" src="js/fontawesome.min.js"></script>
 	<script type="text/javascript" src="js/estilos.js"></script>
+
 </head>
 <body>
 
@@ -40,7 +41,7 @@
 	</table>
 </nav>-->
 	<nav class="navbar navbar-expand-lg navbar-light bg-light">
-	  <a class="navbar-brand" href="/"><img class="logo" src="logo.png"></a>
+	  <a class="navbar-brand" href="/"><img class="logo" src="{{asset('logo.png')}}"></a>
 	  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
 	    <span class="navbar-toggler-icon"></span>
 	  </button>
@@ -48,9 +49,6 @@
 	    <ul class="navbar-nav">
 	      <li class="nav-item active">
 	        <a class="nav-link" href="{{route('clientes.index')}}">Area Cliente <span class="sr-only">(current)</span></a>
-	      </li>
-	      <li class="nav-item active">
-	        <a class="nav-link" href="{{route('perfil')}}">Perfil funcionario</a>
 	      </li>
 	      <li class="nav-item active">
 	        <a class="nav-link" href="{{route('login')}}">Login</a>
@@ -65,15 +63,26 @@
 	          <a class="dropdown-item" href="contactos">Contactos</a>
 	        </div>
 	      </li>
+	      @if(Gate::allows('admin'))
+	      <li class="nav-item active">
+	        <a class="nav-link" href="{{route('materiais')}}">Materiais <span class="sr-only">(current)</span></a>
+	      </li>
+	      <li class="nav-item active">
+	        <a class="nav-link" href="{{route('fornecedores')}}">Fornecedores <span class="sr-only">(current)</span></a>
+	      </li>
+	      @endif
 	    </ul>
 	  </div>
 	</nav>
 
 
 <!--conteudo-->
-<h1>@yield('header')</h1>
+
 	<div class="container">
 		<div class="row">
+<div class="col-md-12">
+<h1>@yield('header')</h1>
+		</div>	
 			<div class="col-md-12">
 	@yield('conteudo')
 			</div>

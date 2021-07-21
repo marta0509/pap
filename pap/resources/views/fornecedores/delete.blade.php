@@ -11,7 +11,7 @@ Fornecedores
 <form method="post" action="{{route('fornecedores.destroy',['id'=>$fornecedores->id_fornecedor])}}">
 	@csrf
 	@method('delete')
-	<input type="submit" name="Sim">
+	<input class="form-control" type="submit" name="Sim">
 	
 </form>
 

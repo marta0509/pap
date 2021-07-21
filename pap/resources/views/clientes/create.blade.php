@@ -8,19 +8,24 @@ Seja bem-vindo de volta!
 @section('conteudo')
 	<form action="{{route('clientes.store')}}" method="post">
 		@csrf
-		@method('patch')
-
-		Nome:<input type="text" name="nome" value="{{$cliente->nome}}"><br>
+	
+		<label class="col-sm-2 col-form-label">Nome:</label>
+		<input class="form-control" type="text" name="nome" value="{{old('nome')}}"><br>
 		@if($errors->has('nome'))
-			Deverá ter no minimo 3 letra.
+			Deverá ter no minimo 5 carateres.
 		@endif
+		<br>
 
-		Telefone:<input type="text" name="telefone" value="{{$cliente->telefone}}"><br>
+		<label class="col-sm-2 col-form-label">Telefone:</label>
+		<input class="form-control" type="text" name="telefone" value="{{old('telefone')}}"><br>
 		@if($errors->has('telefone'))
-			Deverá ter no minimo 9 letra.
+			Deverá ter no minimo 9 carateres.
 		@endif
+		<br>
 		
+		<label class="col-sm-2 col-form-label">Email:</label>
+		<input class="form-control" type="text" name="email" ><br>
 		<br><br>
-		<input type="submit" name="enviar">
+		<input class="form-control" type="submit" name="enviar">
 	</form>
 @endsection

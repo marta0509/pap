@@ -6,16 +6,16 @@ Informação
 Quem Somos
 @endsection
 @section('conteudo')
- 
-<p style="text-align: center">
+ <div class="row">
+ 	<div class="col-md-12">
+<p >
 	Nós somos uma equipa que está s sua disposição para qualquer informação ou reparação do seu equipamento informático.
 	<br>
 	Aqui você poderá consultar as informações do seu equipamento na nossa loja.
 </p>
+</div></div>
 
-<br>
 
-<div class="container">
 	<div class="row">
 		<div class="col-md-1">
 			
@@ -33,5 +33,5 @@ Quem Somos
 			
 		</div>
 	</div>
-</div>
+
 @endsection

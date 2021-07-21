@@ -10,12 +10,17 @@ Equipamentos
 	@csrf
 	@method('patch')
 
-	Marca:<input type="text" name="marca" value="{{$equipamento->marca}}"><br>
+	<label class="col-sm-2 col-form-label">Marca:</label>
+	<input class="form-control" type="text" name="marca" value="{{$equipamento->marca}}"><br>
 	@if($errors->has('marca'))
-		Deverá ter no minimo 1 letra.
+		Deverá ter no minimo 1 caracter.
 	@endif
-	Descrição:<input type="text" name="descricao" value="{{$equipamento->descricao}}"><br>
-	
-	<input type="submit" name="enviar">
+
+	<label class="col-sm-2 col-form-label">Descrição:</label>
+	<input class="form-control" type="text" name="descricao" value="{{$equipamento->descricao}}"><br>
+	@if($errors->has('descricao'))
+		Deverá ter no minimo 1 caracter.
+	@endif
+	<input class="form-control" type="submit" name="enviar">
 </form>
 @endsection

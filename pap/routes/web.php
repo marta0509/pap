@@ -19,6 +19,8 @@ Route::get('/', function () {
 
 Auth::routes();
 
+Route::get('/perfil','App\Http\Controllers\PerfilController@index')->name('perfil')->middleware('auth');
+
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 /*****Contactos*****/
@@ -37,7 +39,7 @@ Route::get('/somos','App\Http\Controllers\SomosController@index')->name('somos')
 
 Route::get('/clientes','App\Http\Controllers\ClientesController@index')->name('clientes.index');
 
-Route::get('/clientes/{id}','App\Http\Controllers\ClientesController@show')->name('clientes.show');
+Route::get('/clientes/{id}/show','App\Http\Controllers\ClientesController@show')->name('clientes.show');
 
 Route::get('/clientes/create','App\Http\Controllers\ClientesController@create')->name('clientes.create');
 
@@ -51,41 +53,33 @@ Route::get('/clientes/{id}/delete','App\Http\Controllers\ClientesController@dele
 
 Route::delete('/clientes','App\Http\Controllers\ClientesController@destroy')->name('clientes.destroy');
 
-/*****perfil dos funcionarios-----admin *****/
-
-Route::get('/perfil','App\Http\Controllers\PerfilController@index')->name('perfil')->middleware('auth');
-
 /*****Equipamentos*****/
 
 Route::get('/equipamentos','App\Http\Controllers\EquipamentosController@index')->name('equipamentos');
 
 Route::get('/equipamentos/{id}/create','App\Http\Controllers\EquipamentosController@create')->name('equipamentos.create');
 
-Route::post('/equipamentos','App\Http\Controllers\EquipamentosController@store')->name('equipamentos.store');
+Route::post('/equipamentos/{id}','App\Http\Controllers\EquipamentosController@store')->name('equipamentos.store');
 
 Route::get('/equipamentos/{id}/edit','App\Http\Controllers\EquipamentosController@edit')->name('equipamentos.edit');
 
 Route::patch('/equipamentos','App\Http\Controllers\EquipamentosController@update')->name('equipamentos.update');
 
-Route::get('/equipamentos/{id}/delete','App\Http\Controllers\EquipamentosController@delete')->name('equipamentos.delete');
-
-Route::delete('/equipamentos','App\Http\Controllers\EquipamentosController@destroy')->name('equipamentos.destroy');
 
 /*****Reparações*****/
 
 Route::get('/reparacoes','App\Http\Controllers\ReparacoesController@index')->name('reparacoes');
 
-Route::get('/reparacoes/create','App\Http\Controllers\ReparacoesController@create')->name('reparacoes.create');
+Route::get('/reparacoes/{id}/show','App\Http\Controllers\ReparacoesController@show')->name('reparacoes.show');
 
-Route::post('/reparacoes','App\Http\Controllers\ReparacoesController@store')->name('reparacoes.store');
+Route::get('/reparacoes/{id}/create','App\Http\Controllers\ReparacoesController@create')->name('reparacoes.create');
+
+Route::post('/reparacoes/{id}','App\Http\Controllers\ReparacoesController@store')->name('reparacoes.store');
 
 Route::get('/reparacoes/{id}/edit','App\Http\Controllers\ReparacoesController@edit')->name('reparacoes.edit');
 
 Route::patch('/reparacoes','App\Http\Controllers\ReparacoesController@update')->name('reparacoes.update');
 
-Route::get('/reparacoes/{id}/delete','App\Http\Controllers\ReparacoesController@delete')->name('equipamentos.delete');
-
-Route::delete('/reparacoes','App\Http\Controllers\EquipamentosController@destroy')->name('reparacoes.destroy');
 
 /*****Fornecedores*****/
 

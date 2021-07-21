@@ -11,7 +11,7 @@ Material
 <form method="post" action="{{route('materiais.destroy',['id'=>$materiais->id_material])}}">
 	@csrf
 	@method('delete')
-	<input type="submit" name="Sim">
+	<input class="form-control" type="submit" name="Sim">
 	
 </form>
 

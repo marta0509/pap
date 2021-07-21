@@ -6,18 +6,24 @@ Equipamentos
 
 @endsection
 @section('conteudo')
-<form action="{{route('equipamentos.store')}}" method="post">
+<h3>Adicionar equipamento ao cliente</h3>
+<h4>{{$cliente->nome}}</h4>
+<form action="{{route('equipamentos.store',['id'=>$cliente->id_cliente])}}" method="post">
 	@csrf
 	
-	Marca:<input type="text" name="marca" value="{{$equipamento->marca}}"><br>
+	<label class="col-sm-2 col-form-label">Marca:</label>
+	<input class="form-control"  type="text" name="marca" value="{{old('marca')}}"><br>
 	@if($errors->has('marca'))
-		Deverá ter no minimo 1 letra.
+		Deverá ter no mínimo 1 caratere(s).
 	@endif
-	Descrição:<input type="text" name="descricao" value="{{$equipamento->descricao}}"><br>
+	<label class="col-sm-2 col-form-label">Descrição:</label>
+	<input class="form-control" type="text" name="descricao" value="{{old('descricao')}}"><br>
 	@if($errors->has('descricao'))
-		Deverá ter no minimo 1 letra.
+		DDeverá ter no mínimo 1 caratere(s).
 	@endif
-	<input type="submit" name="enviar">
+
+
+	<input class="form-control" type="submit" name="enviar">
 </form>
 
 @endsection
