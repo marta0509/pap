@@ -13,7 +13,6 @@ Materiais
       <th scope="col">Designação</th>
       <th scope="col">Stock (uni)</th>
       <th scope="col">Preço</th>
-      <th scope="col">Fornecedor</th>
       <th scope="col">    </th>
     </tr>
   </thead>
@@ -25,7 +24,6 @@ Materiais
 	<td>{{$material->designacao}}</td>
 	<td>{{$material->stock}}</td>
 	<td>{{$material->preco}} €</td>
-  <td>       </td>
 	<td><a style="color: orange" href="{{route('materiais.delete',['id'=>$material->id_material])}}"><i class="fas fa-trash"></i></a></td>
 	
  </tr>
