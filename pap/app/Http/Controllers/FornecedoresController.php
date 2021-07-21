@@ -19,20 +19,20 @@ class FornecedoresController extends Controller
     {
         $idFornecedor=$request->id;
         $fornecedores=Fornecedor::Where('id_fornecedor',$idFornecedor)->first();
-        return view ('fornecedores.index',['fornecedores'=>$fornecedores]);
+        return view ('fornecedores',['fornecedores'=>$fornecedores]);
     } 
 
     public function create(Request $request)
     {
         $idFornecedor=$request->id;
-        $fornecedores=Fornecedor::all();
-        return view ('fornecedores.create',['fornecedores'=>$fornecedores]);      
+        
+        return view ('fornecedores.create');      
     }
 
     public function store(Request $request)
     {
         $novoFornecedor=$request->validate([
-        	'id_fornecedor'=>['required'],
+
             'nome'=>['required','min:1',],
             'telefone'=>['required','min:1','max:9'],
             'email'=>['required','min:1'],
@@ -40,8 +40,7 @@ class FornecedoresController extends Controller
     
         $fornecedores=Fornecedor::create($novoFornecedor);
 
-        return redirect()->route('fornecedores',[
-            'id'=>$fornecedor->id_fornecedor]);
+        return redirect()->route('fornecedores',['fornecedores'=>$fornecedores]);
     }
 
     public function edit (Request $request)
@@ -58,7 +57,7 @@ class FornecedoresController extends Controller
         $fornecedor=Fornecedor::findOrFail($idFornecedor);
 
         $atualizarFornecedor=$request->validate([
-            'id_fornecedor'=>['required'],
+            
             'nome'=>['required','min:1'],
             'telefone'=>['required','min:1','max:19'],
             'email'=>['required','min:1'],
@@ -66,7 +65,7 @@ class FornecedoresController extends Controller
 
         $fornecedor->update($atualizarFornecedor);
 
-        return redirect()->route('fornecedores.show',['id'=>$fornecedor->id_fornecedor]);
+        return redirect()->route('fornecedores',['id'=>$fornecedor->id_fornecedor]);
     }
 
     public function delete (Request $request)
@@ -82,6 +81,6 @@ class FornecedoresController extends Controller
         $fornecedor=Fornecedor::findOrFail($idFornecedor);
         $fornecedor->delete();
 
-        return  redirect()->route('fornecedores.index')->with('mensagem','Fornecedor eliminado');
+        return  redirect()->route('fornecedores')->with('mensagem','Fornecedor eliminado');
     }
 }

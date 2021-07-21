@@ -18,7 +18,8 @@ class Cliente extends Model
     protected $fillable=[
         'nome',
         'telefone',
-        'email'
+        'email',
+        'id_user'
     ];
 
     public function equipamentos()

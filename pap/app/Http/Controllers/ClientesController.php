@@ -28,22 +28,24 @@ class ClientesController extends Controller
 
     public function index()
     {
-            //se gate=normal
-        
-            $clientes=Cliente::all();  
-            //else
+        if (Auth::check()) 
+        {
+             if(Auth::user()->tipo_user=='admin') {
+                $clientes=Cliente::all();  
+            }
             
-           //$cliente=Cliente::where('id', Auth::user()->id)::with('clientes')
-            return view('clientes.index',['clientes'=>$clientes]);
-    
-    }
+            else {
+                $clientes=Cliente::where('id_user', Auth::user()->id)->get();
+            }
 
-    public function old_show(Request $request)
-    {
-        $idCliente=$request->id;
-        $clientes=Cliente::Where('id_cliente',$idCliente)->first();
-        return view ('clientes.index',['clientes'=>$clientes]);
-    } 
+            return view('clientes.index',['clientes'=>$clientes]);
+        }
+        else
+        {
+            return view('somos');
+        }
+              
+    }
 
     public function show(Request $request)
     {
@@ -52,16 +54,16 @@ class ClientesController extends Controller
         $cliente=Cliente::where('id_cliente',$idCliente)->with(['equipamentos.reparacoes']);
         
         $cliente=$cliente->first();
-       // dd($cliente);
+      
         return view ('clientes.show',['cliente'=>$cliente]);
     } 
 
     public function create(Request $request)
     {
-        $idCliente=$request->id;
-        $clientes=Cliente::Where('id_cliente',$idCliente)->first();
+      
+        $users=User::all();
         
-        return view ('clientes.create',['clientes'=>$clientes]);      
+        return view ('clientes.create',['users'=>$users]);      
     }
 
     public function store(Request $request)
@@ -70,6 +72,7 @@ class ClientesController extends Controller
             'nome'=>['required', 'min:5','max:50'],
             'telefone'=>['required','min:9','max:13'],
             'email'=>['nullable','email','max:150'],
+            'id_user'=>['nullable','numeric'],
         ]);
     
         $cliente=Cliente::create($novoCliente);
@@ -82,7 +85,8 @@ class ClientesController extends Controller
     {
         $idCliente=$request->id;
         $clientes=Cliente::Where('id_cliente',$idCliente)->first();
-        return view ('clientes.edit',['clientes'=>$clientes]);
+           $users=User::all();
+        return view ('clientes.edit',['clientes'=>$clientes,'users'=>$users]);
     }
 
     public function update (Request $request)
@@ -93,6 +97,7 @@ class ClientesController extends Controller
                     'nome'=>['required','min:3', 'max:100'],
                     'telefone'=>['required', 'max:9'],
                     'email'=>['nullable'],
+                       'id_user'=>['nullable','numeric'],
                 ]);
          $clientes->update($updateCliente);
         return view ('clientes.show',['cliente'=>$clientes]);

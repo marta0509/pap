@@ -33,7 +33,7 @@ Cliente
 	<td>{{$reparacao->preco}}€</td>
 	<td>{{$reparacao->observacoes}}</td>
   @if(Gate::allows('admin'))
-  <td><a style="color: orange" href="{{route('reparacoes.edit',['id'=>$equipamento->id_equipamento])}}"><i class="fas fa-pencil-alt"></i></a></td>
+  <td><a style="color: orange" href="{{route('reparacoes.edit',['id'=>$reparacao->id_reparacao])}}"><i class="fas fa-pencil-alt"></i></a></td>
   @endif
 
 	</tr>

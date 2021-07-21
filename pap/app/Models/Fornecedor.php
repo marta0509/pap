@@ -13,6 +13,8 @@ class Fornecedor extends Model
 
     protected $table="fornecedores";
 
+    public $timestamps=false;
+
     protected $fillable=[
         'nome',
         'telefone',

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 21-Jul-2021 às 17:53
+-- Tempo de geração: 21-Jul-2021 às 23:31
 -- Versão do servidor: 10.4.17-MariaDB
 -- versão do PHP: 7.4.13
 
@@ -31,17 +31,18 @@ CREATE TABLE `clientes` (
   `id_cliente` int(11) NOT NULL,
   `nome` varchar(80) DEFAULT NULL,
   `telefone` int(9) DEFAULT NULL,
-  `email` varchar(30) DEFAULT NULL
+  `email` varchar(30) DEFAULT NULL,
+  `id_user` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Extraindo dados da tabela `clientes`
 --
 
-INSERT INTO `clientes` (`id_cliente`, `nome`, `telefone`, `email`) VALUES
-(2, 'Maria Emilia Alves De Oliveira', 911541556, 'marta.isabel.5@hotmail.com'),
-(3, 'Marta', 915415554, 'a14177@aedah.pt'),
-(5, 'Tonys', 932558741, 'jose@gmail.com');
+INSERT INTO `clientes` (`id_cliente`, `nome`, `telefone`, `email`, `id_user`) VALUES
+(2, 'Maria Emilia Alves De Oliveira', 911541556, 'marta.isabel.5@hotmail.com', 3),
+(3, 'Marta', 915415554, 'a14177@aedah.pt', 1),
+(5, 'Tonys', 932558741, 'jose@gmail.com', 4);
 
 -- --------------------------------------------------------
 
@@ -64,7 +65,7 @@ INSERT INTO `equipamentos` (`id_equipamento`, `id_cliente`, `marca`, `descricao`
 (1, 1, 'Hp', 'Impressora'),
 (2, 1, 'Lenovo', 'Yoga'),
 (3, 1, 'MacBook', '10.2'),
-(8, 3, 'Hp\'s', 'ola'),
+(8, 3, 'Hp\'s', 'Impressora'),
 (9, 4, 'Sony', 'Pony'),
 (10, 4, 'Samsung', 'S21'),
 (11, 2, 'Hp', 'impressora 1600r'),
@@ -104,9 +105,10 @@ CREATE TABLE `fornecedores` (
 --
 
 INSERT INTO `fornecedores` (`id_fornecedor`, `nome`, `telefone`, `email`) VALUES
-(1, 'Manuel Ferreira', 936587412, 'mferreira@gmail.pt'),
+(1, 'Manuel Ferreira', 936587413, 'mferreira@gmail.pt'),
 (2, 'Vitor Alves', 914785598, 'vitoralves@gmail.com'),
-(6, 'Antonio', 252369874, 'apereira@gmail.com');
+(6, 'Antonio', 252369874, 'apereira@gmail.com'),
+(10, 'mariana', 252147898, 'ffmachado@gmail.com');
 
 -- --------------------------------------------------------
 
@@ -188,7 +190,10 @@ INSERT INTO `reparacao` (`id_reparacao`, `id_material`, `descricao`, `id_equipam
 (1, 111, 'Seu equipamento está pronto!', 1, 215, 'Substituição da  Placa Gráfica'),
 (3, 225, 'Seu equipamento ainda não foi apresentado para o técnico. ', 2, 68, 'Substituição da RAM'),
 (4, 225, 'Ainda não foi visto pelo tecnico', 3, 89, 'Substituição da RAM'),
-(16, 1025, 'Substituição do processador.', 11, 150, 'Está a ser finalizada a reparação do seu equipamento.');
+(16, 1025, 'Substituição do processador.', 11, 150, 'Está a ser finalizada a reparação do seu equipamento.'),
+(17, 1027, 'Substituição da Motherboard.', 8, 250, 'Está a ser finalizada a reparação do seu equipamento.'),
+(18, 111, 'GPU queimado', 11, 150, 'Nada'),
+(19, 111, 'GPU queimado', 11, 150, 'Nadadsfsdfsdfsdf');
 
 -- --------------------------------------------------------
 
@@ -306,7 +311,7 @@ ALTER TABLE `failed_jobs`
 -- AUTO_INCREMENT de tabela `fornecedores`
 --
 ALTER TABLE `fornecedores`
-  MODIFY `id_fornecedor` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id_fornecedor` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT de tabela `materiais`
@@ -324,7 +329,7 @@ ALTER TABLE `migrations`
 -- AUTO_INCREMENT de tabela `reparacao`
 --
 ALTER TABLE `reparacao`
-  MODIFY `id_reparacao` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `id_reparacao` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- AUTO_INCREMENT de tabela `users`

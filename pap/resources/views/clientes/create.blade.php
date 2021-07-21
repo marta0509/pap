@@ -3,7 +3,7 @@
 Cliente
 @endsection
 @section('header')
-Seja bem-vindo de volta!
+Adicione um cliente
 @endsection
 @section('conteudo')
 	<form action="{{route('clientes.store')}}" method="post">
@@ -26,6 +26,14 @@ Seja bem-vindo de volta!
 		<label class="col-sm-2 col-form-label">Email:</label>
 		<input class="form-control" type="text" name="email" ><br>
 		<br><br>
+
+		<select class="form-control" name='id_user'>
+			@foreach ($users as $user)
+				<option class="form-control" value="{{$user->id}}">{{$user->name}}</option>
+			@endforeach
+
+		</select>
+		<br>
 		<input class="form-control" type="submit" name="enviar">
 	</form>
 @endsection

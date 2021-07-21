@@ -17,29 +17,6 @@
 </head>
 <body>
 
-<!--Cabeçalho-->	
-	
-<!--<nav class="navbar">
-	<table class="table">
-		<tr>
-			<td>
-				<a href="/"><img class="logo" src="logo.png"></a>
-			</td>
-			<td >
-				<a id="link" href="{{route('clientes.index')}}">Area Cliente</a>
-			</td>
-			<td >
-				<a id="link" href="{{route('perfil')}}">Perfil funcionário</a>
-			</td>
-			<td >
-				<a id="link" href="{{route('login')}}">Iniciar Sessão</a>
-			</td>
-			<td >
-				<a id="link" href="{{route('equipamentos')}}">Equipamentos</a>
-			</td>
-		</tr>
-	</table>
-</nav>-->
 	<nav class="navbar navbar-expand-lg navbar-light bg-light">
 	  <a class="navbar-brand" href="/"><img class="logo" src="{{asset('logo.png')}}"></a>
 	  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
@@ -49,9 +26,6 @@
 	    <ul class="navbar-nav">
 	      <li class="nav-item active">
 	        <a class="nav-link" href="{{route('clientes.index')}}">Area Cliente <span class="sr-only">(current)</span></a>
-	      </li>
-	      <li class="nav-item active">
-	        <a class="nav-link" href="{{route('login')}}">Login</a>
 	      </li>
 	      <li class="nav-item dropdown active">
 	        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -71,6 +45,35 @@
 	        <a class="nav-link" href="{{route('fornecedores')}}">Fornecedores <span class="sr-only">(current)</span></a>
 	      </li>
 	      @endif
+
+	      		@guest
+                    @if (Route::has('login'))
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
+                                </li>
+                            @endif
+                            
+                           
+                        @else
+                            <li class="nav-item dropdown">
+                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                    {{ Auth::user()->name }}
+                                </a>
+
+                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                    <a class="dropdown-item" href="{{ route('logout') }}"
+                                       onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">
+                                        {{ __('Logout') }}
+                                    </a>
+
+                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                        @csrf
+                                    </form>
+                                </div>
+                            </li>
+                        @endguest
+
 	    </ul>
 	  </div>
 	</nav>
@@ -88,20 +91,6 @@
 			</div>
 		</div>
 	</div>	
-
-
-<!--Rodapé
-
-	<footer class="rodape">
-		<div style="text-align: left">
-			<ul>
-				<a href="somos"> Quem somos </a> <br>
-				<a href="horario"> Horario </a> <br>
-				<a href="contactos"> Contactos </a> <br>
-			</ul>
-		</div>
-	</footer>
--->	
 	
 </body>
 </html>

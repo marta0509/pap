@@ -1,20 +1,18 @@
-<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
-<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+
 <!------ Include the above in your HEAD tag ---------->
 @extends('layout')
 @section('titulo-pagina')
-Registre-se
+Registe-se
 @endsection
 @section('header')
 <br>
 @endsection
 @section('conteudo')
-<br><br><br>
-<div class="container">
-    <div class="row">
-        <div class="col-md-4 col-md-offset-4 login">
-            <h1 class="text-center"><i class="glyphicon glyphicon-user"></i> Registro</h1>
+
+<div class="row margem-top">
+  <div class="col-md-4"></div>
+        <div class="col-md-4 login">
+            <h1 class="text-center"><i class="glyphicon glyphicon-user"></i> Register</h1>
             <hr>
             <form action="{{route('register')}}" method="post">
                 @csrf
@@ -53,12 +51,12 @@ Registre-se
               
               </div>
               <div class="btn-group" role="group">
-                   <button type="submit" class="btn btn-primary">Criar Registo</button>
+                   <button type="submit" class="btn btn-primary" style="background-color: orange">Criar Registo</button>
+
               </div>
              </div>
             </form>
             <hr>
         </div>
-    </div>
 </div>
 @endsection

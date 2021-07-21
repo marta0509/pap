@@ -45,12 +45,12 @@ class ReparacoesController extends Controller
         $novoReparacao=$request->validate([
             'id_material'=>['nullable','min:1','max:50'],
             'descricao'=>['nullable','min:1','max:150'],
-            'id_equipamento'=>['nullable','min:1','max:50'],
+            
             'preco'=>['nullable','min:1','max:15'],
             'observacoes'=>['nullable','min:1','max:150'],
             
         ]);
-    
+     $novoReparacao['id_equipamento']=$equipamento->id_equipamento;
         $novoReparacao['id_equipamento']=$idE;
         $reparacao=Reparacao::create($novoReparacao);
 
@@ -60,28 +60,31 @@ class ReparacoesController extends Controller
 
     public function edit (Request $request)
     {
-        $idEquipamento=$request->id;
-        $equipamento=Equipamento::where('id_equipamento',$idEquipamento)->first();
+        $idReparacao=$request->id;
+        $reparacao = Reparacao::where('id_reparacao', $idReparacao)->first();
 
-        return view('reparacoes.edit',['equipamento'=>$equipamento]);
+       // $equipamento=Equipamento::where('id_equipamento',$idEquipamento)->first();
+        $materiais=Material::all();
+        return view('reparacoes.edit',['reparacao'=>$reparacao,'materiais'=>$materiais]);
     }
 
     public function update (Request $request)
     {
-        $idReparacao=$request->id;
-        $reparacao=Reparacao::findOrFail($idReparacao);
-
-        $atualizarReparacao=$request->validate([
+        $idR = $request->id;
+        $reparacao = Reparacao::where('id_reparacao', $idR)->first();
+        $novoReparacao=$request->validate([
             'id_material'=>['nullable','min:1','max:50'],
             'descricao'=>['nullable','min:1','max:150'],
-            'id_equipamento'=>['nullable','min:1','max:50'],
-            'preco'=>['nullable','numeric'],
+            
+            'preco'=>['nullable','min:1','max:15'],
             'observacoes'=>['nullable','min:1','max:150'],
             
         ]);
-         $atualizarReparacao['id_equipamento']=$equipamento->id_cliente;
-        $reparacao->update($atualizarReparacao);
+    
+        $novoReparacao['id_equipamento']=$reparacao->id_equipamento;
+        $reparacao=Reparacao::create($novoReparacao);
 
-        return redirect()->route('reparacao',['id'=>$equipamento->id_cliente]);
+        return redirect()->route('reparacoes.show',[
+            'id'=>$reparacao->id_equipamento]);
     }
 }

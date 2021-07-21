@@ -3,7 +3,7 @@
 Cliente
 @endsection
 @section('header')
-Edite aqui o seu perfil
+Edite aqui o perfil
 @endsection
 @section('conteudo')
 	<form action="{{route('clientes.update',$clientes->id_cliente)}}" method="post">
@@ -26,6 +26,18 @@ Edite aqui o seu perfil
 			<input class="form-control" type="text" name="email" value="{{$clientes->email}}"><br>
 
 		<br><br>
+		
+		<label class="col-sm-2 col-form-label">Utilizador:</label>
+		<select class="form-control" name='id_user'>
+		@foreach ($users as $user)
+
+			<option value="{{$user->id}}">{{$user->name}}</option>
+			
+		@endforeach
+
+		</select>
+
+		<br>
 		<input class="form-control" type="submit" name="enviar">
 	</form>
 @endsection

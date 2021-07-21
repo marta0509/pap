@@ -13,10 +13,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('index');
-});
-
+Route::get('/','App\Http\Controllers\ClientesController@index')->name('myhome');
 Auth::routes();
 
 Route::get('/perfil','App\Http\Controllers\PerfilController@index')->name('perfil')->middleware('auth');
